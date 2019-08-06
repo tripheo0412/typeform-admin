@@ -1,0 +1,140 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.navbar {
+  @include font-size-m;
+  font-family: $font-family;
+  font-weight: 300;
+  display: flex;
+  border-bottom: 1px solid $secondary;
+  background-color: $white;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+
+  &__left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    &--desktop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &--logo {
+      margin: $spacing-01;
+      cursor: pointer;
+    }
+
+    &--title {
+      padding-right: $spacing-00-25;
+      text-decoration: none;
+      text-transform: capitalize;
+      color: $grey-light;
+    }
+    &--mobile {
+      display: none;
+    }
+  }
+  .template--name {
+    color: $primary;
+
+    &::before {
+      content: "\002F";
+      font-size: 15px;
+      padding-right: 2px;
+      color: $grey-light;
+    }
+  }
+  &__navlinks {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+
+    li {
+      margin: $spacing-01;
+    }
+    a {
+      text-decoration: none;
+      text-transform: capitalize;
+      color: $grey-light;
+
+      &:hover {
+        color: $primary;
+      }
+      &:active {
+        color: $danger;
+      }
+    }
+  }
+  &__center {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: $spacing-01;
+    &__mobile {
+      display: none;
+    }
+
+    button {
+      margin-right: $spacing-01;
+    }
+  }
+  &__workspace {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: $spacing-01;
+    padding-right: $spacing-01;
+  }
+}
+
+@include for-tablet-portrait-down {
+  .dot__menu {
+    margin-right: $spacing-01;
+  }
+  .navbar__left--desktop {
+    display: none;
+  }
+
+  .navbar__left--mobile {
+    display: block;
+
+    button {
+      background: transparent;
+      margin-right: $spacing-00-25;
+      margin-left: $spacing-00-25;
+      border: none;
+      &:after {
+        content: "\003C";
+        font-size: 20px;
+        color: $grey-light;
+      }
+    }
+  }
+  .navbar__navlinks {
+    display: none;
+  }
+  .navbar__center {
+    margin: 0;
+    .button {
+      padding: $spacing-00-50 0;
+      min-width: 40%;
+    }
+    .avatar {
+      display: none;
+    }
+  }
+}
+
+@include for-desktop-up-1 {
+  .dot__menu {
+    display: none;
+  }
+  .navbar__navlinks--mobile {
+    display: none;
+  }
+}

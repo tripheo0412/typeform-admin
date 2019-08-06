@@ -1,0 +1,41 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.add__question {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+
+    &:hover {
+      .add__button {
+        //width: 42px;
+        //height: 42px;
+        //margin-right: 10px;
+        @include color($dark-light-1, $light);
+      }
+    }
+  }
+}
+
+.add__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-00-75;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  @include color($grey-light-2, $dark-light);
+  &::after {
+    content: "\002B";
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Button Test should render Question card correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Card Button Test should render card text correctly with responses 1`] = `ShallowWrapper {}`;
+
+exports[`Card Button Test should render card text correctly without responses 1`] = `ShallowWrapper {}`;
+
+exports[`Card Button Test should render correctly default template 1`] = `ShallowWrapper {}`;

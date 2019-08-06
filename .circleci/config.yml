@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.16.0
+        environment:
+          SKIP_PREFLIGHT_CHECK: true
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test
+      - run: yarn flow
+      - run: yarn lint

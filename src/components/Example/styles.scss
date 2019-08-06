@@ -1,0 +1,10 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.example--title {
+  color: $primary;
+  @include for-phone-only {
+    color: $dark;
+  }
+}

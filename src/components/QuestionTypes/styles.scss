@@ -1,0 +1,90 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.question__Types {
+  position: absolute;
+  z-index: 20;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  @include color($light, $grey-light-2);
+  padding: $spacing-00-50 0;
+  width: 100%;
+  height: 320px;
+  width: 220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 8px;
+
+  &--hide {
+    display: none;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    color: $dark-light;
+    text-transform: capitalize;
+    padding: $spacing-00-50 $spacing-01;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+
+  &__icon {
+    border-radius: 5px;
+    padding: $spacing-00-25;
+    margin-right: $spacing-00-50;
+    min-height: 20px;
+    max-height: 20px;
+    min-width: 20px;
+    max-width: 20px;
+
+    &--iconPhoto {
+      background-color: #3fc46a;
+    }
+    &--iconCheck {
+      background-color: #4fa9b3;
+    }
+    &--iconPhone {
+      background-color: #3fc46a;
+    }
+    &--iconShortText {
+      background-color: #ffba49;
+    }
+    &--iconLongText {
+      background-color: #e26d5a;
+    }
+    &--iconQuote {
+      background-color: #94ae89;
+    }
+    &--iconPhoto {
+      background-color: #a086c4;
+    }
+    &--iconYesnoQuestion {
+      background-color: #bf395b;
+    }
+    &--iconEmail {
+      background-color: #3a7685;
+    }
+    &--iconNumber {
+      background-color: #e04f78;
+    }
+    &--iconLink {
+      background-color: #bac26c;
+    }
+    &--iconRating {
+      background-color: #f3cd59;
+    }
+    &--iconDate {
+      background-color: #f09f97;
+    }
+    &--iconFile {
+      background-color: #4fa9b3;
+    }
+  }
+}

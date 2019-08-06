@@ -1,0 +1,198 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+@mixin question-phone-style($marginLeft) {
+  .question {
+    .button__icon--add {
+      display: none;
+    }
+    &__body {
+      width: 100%;
+    }
+    &--required {
+      padding-right: 0;
+    }
+    &__type {
+      position: absolute;
+      top: 65%;
+      left: $marginLeft;
+      &--mobile--isRequired {
+        left: 15%;
+      }
+      &--mobile--hasDescription {
+        top: 75%;
+      }
+    }
+  }
+  .button {
+    &--mobile {
+      display: none;
+    }
+  }
+}
+
+.question__container {
+  display: flex;
+  width: 100%;
+}
+
+.question {
+  position: relative;
+  padding: $spacing-01-50;
+  display: flex;
+  width: 100%;
+  font-family: $font-family;
+  &:hover {
+    background-color: $grey-light-3 !important;
+    .button__icon--add {
+      opacity: 1;
+    }
+  }
+  &:focus {
+    outline: none;
+    background-color: #fafafa;
+    .button__icon--add {
+      opacity: 1;
+    }
+  }
+  &__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: $spacing-01;
+  }
+  &__type {
+    display: flex;
+    background-color: #4fa9b3;
+    height: 20px;
+    align-items: center;
+    padding: 0 $spacing-00-50;
+    border-radius: 5px;
+    cursor: pointer;
+    &:focus {
+      border: 0;
+      outline: none;
+    }
+    &--shortText {
+      background-color: #ffba49;
+    }
+    &--longText {
+      background-color: #e26d5a;
+    }
+    &--phonenumber {
+      background-color: #3fc46a;
+    }
+    &--mulChoice {
+      background-color: #4fa9b3;
+    }
+    &--picChoice {
+      background-color: #a086c4;
+    }
+    &--statement {
+      background-color: #94ae89;
+    }
+    &--email {
+      background-color: #3a7685;
+    }
+    &--rating {
+      background-color: #f3cd59;
+    }
+    &--link {
+      background-color: #bac26c;
+    }
+    &--number {
+      background-color: #e04f78;
+    }
+    &--file {
+      background-color: #3c6997;
+    }
+    &--date {
+      background-color: #f09f97;
+    }
+    &--YesNo {
+      background-color: #bf395b;
+    }
+    &--icon {
+      width: 20px;
+      height: 20px;
+      margin-right: $spacing-01;
+    }
+  }
+  &__text {
+    display: block;
+    outline: none;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    resize: none;
+    scroll-behavior: unset;
+    &:focus {
+      display: block;
+      outline: none;
+      border: 0;
+    }
+    &--description {
+      outline: none;
+      border: 0;
+      background: transparent;
+      color: #898989;
+      resize: none;
+      margin-top: $spacing-01;
+      @include font-size-s;
+      &:focus {
+        display: block;
+        outline: none;
+        border: 0;
+      }
+    }
+  }
+
+  &__number {
+    color: $light;
+  }
+  &__body {
+    padding-left: $spacing-01;
+    width: 50%;
+  }
+  &__buttons {
+    position: relative;
+    margin-top: $spacing-02;
+    display: flex;
+    justify-content: flex-end;
+    .button__icon {
+      width: 30px;
+      transition: 0.4s;
+      &:hover {
+        background-color: $grey-light-1;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &--required {
+    color: #d95767;
+    display: block;
+    padding-right: $spacing-01;
+  }
+  .button {
+    &__icon--add {
+      display: block;
+      position: absolute;
+      left: 3%;
+      bottom: 3%;
+      opacity: 0;
+    }
+    &__icon--add-show {
+      opacity: 1;
+    }
+  }
+}
+
+@include for-big-phone {
+  @include question-phone-style(11%);
+}
+@include for-small-phone {
+  @include question-phone-style(13%);
+}

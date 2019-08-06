@@ -1,0 +1,28 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.container {
+  padding: $spacing-01;
+  line-height: 32px;
+
+  .verification__message--success {
+    @include font-size-s;
+    background: rgb(85, 165, 85);
+    padding: $spacing-01;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  h3 {
+    text-transform: capitalize;
+    padding-left: $spacing-00-50;
+  }
+  p {
+    padding-left: $spacing-00-50;
+  }
+
+  form > button {
+    margin-left: $spacing-00-50;
+  }
+}

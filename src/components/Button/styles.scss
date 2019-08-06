@@ -1,0 +1,72 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+@mixin buttonStyles($background, $color, $border, $borderRadius) {
+  font-family: $font-family;
+  font-weight: 300;
+  @include color($background, $color);
+
+  border: $border;
+  border-radius: $borderRadius;
+  min-width: 80px;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+
+  &:hover {
+    cursor: pointer;
+    transition: all 400ms;
+    background-color: tint($background, 20%);
+  }
+  &:disabled {
+    cursor: no-drop;
+    @include color(tint($background, 50%), tint($color, 50%));
+  }
+}
+
+.button {
+  &--primary {
+    @include buttonStyles($primary, $white, none, 4px);
+    &--dark {
+      @include color($primary-dark, $white);
+      &:hover {
+        background-color: tint($primary-dark, 20%);
+      }
+      &:disabled {
+        @include color(tint($primary-dark, 50%), tint($white, 50%));
+      }
+    }
+  }
+  &--secondary {
+    @include buttonStyles($secondary, $dark, none, 4px);
+  }
+  &--outline {
+    @include buttonStyles($white, $dark, 1px solid $dark, 0);
+    &:hover {
+      background-color: $dark;
+      color: $white;
+    }
+  }
+  &--danger {
+    @include buttonStyles($danger, $white, none, 4px);
+  }
+  &--duplicate {
+    @include buttonStyles($duplicate, $white, none, 4px);
+  }
+
+  &--sm {
+    padding: $spacing-00-50 $spacing-01;
+    @include font-size-m;
+  }
+  &--md {
+    padding: $spacing-00-50 $spacing-03;
+    @include font-size-m;
+  }
+  &--lg {
+    padding: $spacing-00-50 $spacing-01;
+    @include buttonStyles($dark, $white, none, 0);
+    @include font-size-l;
+    min-width: 250px;
+  }
+}

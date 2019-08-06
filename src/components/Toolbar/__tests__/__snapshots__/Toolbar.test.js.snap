@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar Toolbar should render correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Toolbar Toolbar variant prop should be main by default 1`] = `ReactWrapper {}`;

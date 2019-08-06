@@ -1,0 +1,16 @@
+// @flow
+export type RadioProps = {
+  handleClick: () => () => any,
+};
+
+export type TabOptions = {
+  title: string,
+  value: string,
+};
+export type TabProps = {
+  type: string,
+  title: string,
+  label: string,
+  handleClick: () => any,
+  options: Array<TabOptions>,
+};

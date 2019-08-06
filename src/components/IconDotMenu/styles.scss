@@ -1,0 +1,33 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.icondot {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    background-color: $grey-light-1;
+  }
+  &::after {
+    content: "\22EF";
+    @include font-size-l;
+  }
+  &__dropdown--right {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+  }
+  &__dropdown--left {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
+}

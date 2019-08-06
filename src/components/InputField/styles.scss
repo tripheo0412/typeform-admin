@@ -1,0 +1,70 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+@mixin inputPrimary($borderColor) {
+  @include font-size-s;
+  margin: $spacing-00-50;
+  border: 0;
+  font-family: $font-family;
+  padding: $spacing-00-50 $spacing-00-50;
+  height: $spacing-02;
+  font-weight: 200;
+  border: 2px solid $borderColor;
+  &:focus {
+    border: 2px solid $dark;
+    outline: none;
+  }
+}
+
+::placeholder {
+  color: $grey-light-1;
+  opacity: 1;
+}
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  &--search {
+    display: flex;
+    flex-direction: row;
+  }
+  span {
+    margin-left: $spacing-00-50;
+  }
+}
+
+.password {
+  font-size: 12px;
+  color: $dark;
+  text-decoration: underline;
+}
+
+.inputField {
+  &__img {
+    margin-left: $spacing-00-25;
+    margin-right: $spacing-00-25 / 2;
+    width: 30px;
+  }
+  &--primary {
+    @include inputPrimary($grey-light-1);
+  }
+  &--dialog {
+    @include inputPrimary($dark);
+  }
+  &--template {
+    @include inputPrimary($grey-light-2);
+    margin: 0;
+    padding: $spacing-00-50 0px $spacing-00-50 $spacing-00-50;
+  }
+  &--search {
+    font-size: 20px;
+    border: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 9px 15px;
+    &:focus {
+      outline: none;
+    }
+  }
+}

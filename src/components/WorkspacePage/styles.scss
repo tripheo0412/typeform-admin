@@ -1,0 +1,56 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.workspace {
+  font-family: $font-family;
+  &__container {
+    display: flex;
+  }
+  &__button {
+    &--title {
+      margin-top: $spacing-01 / 2;
+      overflow: hidden;
+      white-space: nowrap;
+      outline: none;
+      border: 0;
+      padding: 10px 16px 10px 4px;
+      min-width: 64px;
+      max-width: 100%;
+      transition: 0.4s;
+      box-shadow: inset 0 0 0 1px transparent;
+      &:hover {
+        box-shadow: inset 0 0 0 1px #aaa;
+        border-radius: 4px;
+      }
+    }
+    margin-bottom: $spacing-01-50;
+  }
+  &__list {
+    padding: $spacing-01 $spacing-00-75 $spacing-01-50 $spacing-02;
+  }
+  &__title {
+    color: $primary;
+    text-decoration: none;
+    @include font-size-l;
+    &:focus {
+      order: 0;
+      outline: none;
+    }
+  }
+  &__users {
+    display: flex;
+    padding: $spacing-01 0;
+  }
+  &__user {
+    padding: 0 $spacing-00-25 0 0;
+  }
+}
+
+@include for-desktop-down-1 {
+  .workspace {
+    &__container {
+      display: block;
+    }
+  }
+}
