@@ -27,6 +27,11 @@ export const SocialLogin = () => {
   const onSuccess = response => {
     console.log(response);
   };
+  const checkLoginState = () => {
+    window.FB.getLoginStatus(function(response) {
+      console.log(response);
+    });
+  };
   return (
     <div className="social__login">
       <div id={GOOGLE_BUTTON_ID}></div>
@@ -37,7 +42,7 @@ export const SocialLogin = () => {
         data-button-type="continue_with"
         data-auto-logout-link="false"
         data-use-continue-as="false"
-        onLogin
+        onlogin={checkLoginState}
       ></div>
     </div>
   );
