@@ -2,7 +2,8 @@
 import * as React from 'react';
 import './styles.scss';
 
-const GOOGLE_BUTTON_ID = 'google-sign-in-button';
+const GOOGLE_BUTTON_ID =
+  '96649280732-gnu1j75n4srhjurp5kqerpckvib9e8ap.apps.googleusercontent.com';
 
 export const SocialLogin = () => {
   React.useEffect(() => {
@@ -14,7 +15,7 @@ export const SocialLogin = () => {
 
     window.fbAsyncInit = () => {
       window.FB.init({
-        appId: '',
+        appId: '314728102812977',
         cookie: true,
         status: true,
         xfbml: true,
@@ -23,7 +24,9 @@ export const SocialLogin = () => {
     };
   });
 
-  const onSuccess = () => {};
+  const onSuccess = response => {
+    console.log(response);
+  };
   return (
     <div className="social__login">
       <div id={GOOGLE_BUTTON_ID}></div>
@@ -34,6 +37,7 @@ export const SocialLogin = () => {
         data-button-type="continue_with"
         data-auto-logout-link="false"
         data-use-continue-as="false"
+        onLogin
       ></div>
     </div>
   );

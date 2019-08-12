@@ -2,12 +2,10 @@
 import React, { useState, useContext } from 'react';
 import type { Node } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
 import { UserContext } from '../../contexts/UserContext';
 import { InputField } from '../../components/InputField';
 import { Button } from '../../components/Button';
-// import SocialLogin from '../SocialLogin';
+import SocialLogin from '../../components/SocialLogin';
 import './styles.scss';
 
 type InputFields = {
@@ -205,22 +203,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
           {showLogin && (
             <div>
               <div className="login__split"></div>
-              <GoogleLogin
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                buttonText="Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy="single_host_origin"
-              />
-
-              <FacebookLogin
-                appId={process.env.REACT_APP_FACEBOOK_APP_ID}
-                autoLoad
-                fields="name,email,picture"
-                callback={responseFacebook}
-                cssClass="my-facebook-button-class"
-                icon="fa-facebook"
-              />
+              <SocialLogin />
             </div>
           )}
         </div>
