@@ -1,42 +1,56 @@
 // @flow
+import React, { createContext, useCallback, useState } from 'react';
+import type { Node } from 'react';
 
-import * as React from 'react';
+import { lightTheme, darkTheme } from '../theme';
 
-type Context = {
-  dark: boolean,
-  toggle: () => void,
-};
-
-export const ThemeContext = React.createContext<Context>({
-  dark: false,
-  toggle: () => {},
-});
+export const ThemeContext = createContext<Object>();
 
 type ThemeProps = {
-  children: React.Node,
+  children: Node,
 };
 
 export function ThemeProvider({ children }: ThemeProps) {
-  const [dark, setDark] = React.useState(false);
+  const [isDark, setIsDark] = useState(false);
 
-  const toggle = () => {
-    setDark(!dark);
-    localStorage.setItem('darkTheme', !dark ? 'true' : 'false');
+  const root = document.documentElement;
+
+  const setLightTheme = useCallback(() => {
+    setIsDark(false);
+    Object.keys(lightTheme).forEach(key => {
+      if (root) root.style.setProperty(key, lightTheme[key]);
+    });
+  }, [root]);
+
+  const setDarkTheme = useCallback(() => {
+    setIsDark(true);
+    Object.keys(darkTheme).forEach(key => {
+      if (root) root.style.setProperty(key, darkTheme[key]);
+    });
+  }, [root]);
+
+  const switchTheme = () => {
+    if (isDark) {
+      localStorage.setItem('theme', 'Light');
+      setLightTheme();
+    } else {
+      localStorage.setItem('theme', 'Dark');
+      setDarkTheme();
+    }
   };
 
-  // paints the app before it renders elements
-  React.useLayoutEffect(() => {
-    const darkTheme = localStorage.getItem('darkTheme');
-    if (darkTheme === 'true') {
-      setDark(true);
-    } else {
-      setDark(false);
+  React.useEffect(() => {
+    switch (localStorage.getItem('theme')) {
+      case 'Dark':
+        setDarkTheme();
+        break;
+      default:
+        setLightTheme();
     }
-    // if state changes, repaints the app
-  }, [dark]);
+  }, [setDarkTheme, setLightTheme]);
 
   return (
-    <ThemeContext.Provider value={{ dark, toggle }}>
+    <ThemeContext.Provider value={{ isDark, switchTheme }}>
       {children}
     </ThemeContext.Provider>
   );

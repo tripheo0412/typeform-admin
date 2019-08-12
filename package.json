@@ -1,11 +1,7 @@
 {
-  "name": "typeform-admin",
-  "version": "0.0.1",
-  "description": "typeform-admin-site",
-  "main": "index.js",
-  "repository": "https://github.com/tripheo0412/typeform-admin.git",
-  "author": "tripheo0412 <tripheo0412@gmail.com>",
-  "license": "MIT",
+  "name": "typeform-clone-admin",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
@@ -72,4 +68,3 @@
     "prettier": "^1.16.4"
   }
 }
-

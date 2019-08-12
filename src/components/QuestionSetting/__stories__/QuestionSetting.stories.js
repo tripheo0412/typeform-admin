@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import QuestionSetting from '..';
 import TabPanel from '../../TabPanel';
+import { ThemeProvider } from '../../../contexts/ThemeContext';
 
 const options = [
   {
@@ -20,7 +21,9 @@ const styles = {
 };
 
 const Wrapper = ({ children }: React.Node) => (
-  <div style={styles}>{children}</div>
+  <ThemeProvider value={{ isDark: false, switchTheme: () => {} }}>
+    <div style={styles}>{children}</div>{' '}
+  </ThemeProvider>
 );
 
 storiesOf('Question Setting', module)

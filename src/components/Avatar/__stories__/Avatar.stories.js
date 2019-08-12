@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Avatar } from '..';
+import { ThemeProvider } from '../../../contexts/ThemeContext';
+import { UserProvider } from '../../../contexts/UserContext';
 
 const styles = {
   padding: '20px',
@@ -10,7 +12,11 @@ const styles = {
 };
 
 const Wrapper = ({ children }: React.Node) => (
-  <div style={styles}>{children}</div>
+  <UserProvider>
+    <ThemeProvider>
+      <div style={styles}>{children}</div>{' '}
+    </ThemeProvider>
+  </UserProvider>
 );
 
 storiesOf('Avatar with image', module)

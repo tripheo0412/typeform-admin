@@ -7,8 +7,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  color: $light;
-  background: $danger;
+  color: var(--color-text-primary);
+  background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;

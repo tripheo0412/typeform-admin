@@ -4,6 +4,14 @@
 
 @mixin question-phone-style($marginLeft) {
   .question {
+    &:hover {
+      .button__icon--add {
+        display: none;
+      }
+    }
+    &__container {
+      min-width: 0;
+    }
     .button__icon--add {
       display: none;
     }
@@ -21,12 +29,15 @@
         left: 15%;
       }
       &--mobile--hasDescription {
-        top: 75%;
+        top: 70%;
       }
     }
   }
   .button {
     &--mobile {
+      display: none;
+    }
+    &__icon--add {
       display: none;
     }
   }
@@ -35,6 +46,7 @@
 .question__container {
   display: flex;
   width: 100%;
+  min-width: 400px;
 }
 
 .question {
@@ -56,6 +68,10 @@
       opacity: 1;
     }
   }
+  &__body {
+    padding-left: $spacing-01;
+    width: 80%;
+  }
   &__icon {
     width: 20px;
     height: 20px;
@@ -68,7 +84,6 @@
     align-items: center;
     padding: 0 $spacing-00-50;
     border-radius: 5px;
-    cursor: pointer;
     &:focus {
       border: 0;
       outline: none;
@@ -123,9 +138,14 @@
     outline: none;
     border: 0;
     background: transparent;
-    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
     resize: none;
-    scroll-behavior: unset;
+    cursor: pointer;
+    &:empty:before {
+      content: attr(data-placeholder);
+      color: $grey-light;
+    }
     &:focus {
       display: block;
       outline: none;
@@ -137,6 +157,7 @@
       background: transparent;
       color: #898989;
       resize: none;
+      cursor: pointer;
       margin-top: $spacing-01;
       @include font-size-s;
       &:focus {
@@ -144,16 +165,17 @@
         outline: none;
         border: 0;
       }
+      &:empty:before {
+        content: attr(data-placeholder);
+        color: $grey-light-1;
+      }
     }
   }
 
   &__number {
     color: $light;
   }
-  &__body {
-    padding-left: $spacing-01;
-    width: 50%;
-  }
+
   &__buttons {
     position: relative;
     margin-top: $spacing-02;
@@ -190,9 +212,53 @@
   }
 }
 
-@include for-big-phone {
+@include for-small-phone-fixed {
   @include question-phone-style(11%);
 }
 @include for-small-phone {
   @include question-phone-style(13%);
+}
+@include for-phone {
+  .question {
+    &:hover {
+      .button__icon--add {
+        display: none;
+      }
+    }
+    .button {
+      &__icon--add {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 321px) and (max-width: 599px) {
+  .question {
+    &:hover {
+      .button__icon--add {
+        display: none;
+      }
+    }
+    .button {
+      &__icon--add {
+        display: none;
+      }
+    }
+  }
+}
+
+@include for-tablet-portait {
+  .question {
+    &:hover {
+      .button__icon--add {
+        display: none;
+      }
+    }
+    .button {
+      &__icon--add {
+        display: none;
+      }
+    }
+  }
 }

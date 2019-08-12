@@ -16,6 +16,7 @@ import { useOnClickOutside } from '../../custom-hooks/useOnClickOutside';
 
 type questionProps = {
   type?: string,
+  showQuestionSetting: () => void,
   isRequired?: boolean,
   hasDescription?: boolean,
   hasPicture?: boolean,
@@ -37,6 +38,7 @@ export const Question = ({
   hasDescription,
   hasPicture,
   hasURL,
+  showQuestionSetting,
 }: questionProps) => {
   const questionEl: Ref = React.useRef(null);
   const addQuestionEl: Ref = React.useRef(null);
@@ -126,18 +128,26 @@ export const Question = ({
             <span className="question__number">1</span>
           </div>
           <div className="question__body">
-            <textarea
+            <div
+              contentEditable
+              role="button"
+              tabIndex="0"
+              onKeyPress={() => {}}
               className="question__text"
               value={questionText}
               onClick={questionBackgroundHandler}
               onChange={onTextChangeHandler}
-              placeholder="Before we start, can we get your first name"
-            ></textarea>
+              data-placeholder="Type a question..."
+            ></div>
             {hasDescription && (
-              <textarea
+              <div
+                contentEditable
+                role="button"
+                tabIndex="0"
+                onKeyPress={() => {}}
                 className="question__text--description"
-                placeholder="Write your description"
-              ></textarea>
+                data-placeholder="Write your description"
+              ></div>
             )}
             {hasPicture && (
               <div>
@@ -154,7 +164,7 @@ export const Question = ({
                 <button
                   type="button"
                   className="button__icon"
-                  onClick={() => {}}
+                  onClick={showQuestionSetting}
                 >
                   <img src={setting} alt="settings button" />
                 </button>

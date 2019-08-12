@@ -1,1 +1,1 @@
-# typeform-admin
+Admin side of Typeform clone

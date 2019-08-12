@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 // @flow
-
 import { Types } from '../reducers/actionTypes';
 import { authAxios, customAxios, setAuthToken } from './customAxios';
 
@@ -19,8 +18,11 @@ export const useUserService = (state: Object, dispatch: Function) => {
   };
   const signin = (credential: Object) => {
     authAxios
-      .post(`${userURL}/signin`, credential)
+      .post(`${userURL}/signin`, credential, {
+        withCredentials: true,
+      })
       .then(res => {
+        localStorage.setItem('token', res.data.token);
         setAuthToken(res.data.token);
         get();
       })
@@ -30,6 +32,8 @@ export const useUserService = (state: Object, dispatch: Function) => {
     authAxios
       .get(`${userURL}/oauth/google`)
       .then(res => {
+        localStorage.setItem('token', res.data.token);
+        setAuthToken(res.data.token);
         get();
       })
       .catch(err => console.log(err));
@@ -38,6 +42,8 @@ export const useUserService = (state: Object, dispatch: Function) => {
     authAxios
       .get(`${userURL}/oauth/facebook`)
       .then(res => {
+        localStorage.setItem('token', res.data.token);
+        setAuthToken(res.data.token);
         get();
       })
       .catch(err => console.log(err));
@@ -46,6 +52,7 @@ export const useUserService = (state: Object, dispatch: Function) => {
     authAxios
       .get(`${userURL}/newtoken`)
       .then(res => {
+        localStorage.setItem('token', res.data.token);
         console.log(res);
       })
       .catch(err => console.log(err));
@@ -89,6 +96,7 @@ export const useUserService = (state: Object, dispatch: Function) => {
       .then(res => {
         dispatch({
           type: Types.REMOVE_USER,
+          payload: { user: {} },
         });
       })
       .catch(err => console.log(err));
@@ -107,10 +115,14 @@ export const useUserService = (state: Object, dispatch: Function) => {
 
   const signout = () => {
     authAxios
-      .get(`${userURL}/signout`)
+      .get(`${userURL}/signout`, {
+        withCredentials: true,
+      })
       .then(res => {
+        localStorage.removeItem('token');
         dispatch({
           type: Types.REMOVE_USER,
+          payload: { user: {} },
         });
       })
       .catch(err => console.log(err));

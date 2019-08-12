@@ -2,7 +2,6 @@
 // @flow
 import React from 'react';
 import classNames from 'classnames';
-import search from '../../assets/icons/iconSearch.svg';
 import './styles.scss';
 
 type Props = {
@@ -38,7 +37,7 @@ export const InputField = ({
       <span>{labelText}</span>
       {variant === 'search' ? (
         <div id={id} className="input__container--search">
-          <img className="inputField__img" src={search} alt="search" />
+          <div className="inputField__img"> </div>
           <input
             className={inputStyles}
             variant={variant}

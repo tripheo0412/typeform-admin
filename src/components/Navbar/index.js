@@ -4,6 +4,7 @@ import IconDotMenu from '../IconDotMenu';
 import Button from '../Button';
 import Avatar from '../Avatar';
 import { DropDown } from '../DropDownMenu';
+
 import './styles.scss';
 
 type Props = {

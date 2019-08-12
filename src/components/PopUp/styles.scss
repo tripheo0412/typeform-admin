@@ -1,6 +1,7 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 @import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
 
 .modal {
   @include font-size-m;
@@ -17,7 +18,7 @@
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px 0px $disabled-dark;
   border-radius: 10px;
-  @include color($white, $dark-light);
+  @include color(var(--color-background), var(--color-text-primary));
 
   &__search {
     border-radius: 0;
@@ -25,7 +26,7 @@
       &--panel {
         &--header {
           @include font-size-s;
-          color: $disabled-dark;
+          color: var(--color-text-secondary);
           padding-left: $spacing-02;
           padding-right: $spacing-02;
           padding-bottom: $spacing-00-50;
@@ -49,9 +50,6 @@
     padding: $spacing-02;
     border-radius: 10px;
 
-    &--dark {
-      @include color($dark-light, $white);
-    }
     .closed {
       display: none;
     }
@@ -75,10 +73,6 @@
 
       &:hover {
         color: darkgray;
-      }
-
-      &--dark {
-        color: $white;
       }
     }
 

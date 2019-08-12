@@ -3,6 +3,7 @@
 @import "../../assets/styles/normalize";
 
 .container {
+  color: var(--color-text-primary);
   padding: $spacing-01;
   line-height: 32px;
 

@@ -4,9 +4,13 @@ import './styles.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import { ThemeContext } from '../../contexts/ThemeContext';
-
-type Variant = 'primary' | 'secondary' | 'outline' | 'danger' | 'duplicate';
+type Variant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'danger'
+  | 'duplicate'
+  | 'addquestion';
 
 type Size = 'sm' | 'md' | 'lg';
 
@@ -19,13 +23,12 @@ type Props = {
 };
 
 export const Button = ({ variant, label, disabled, onClick, size }: Props) => {
-  const { dark } = React.useContext(ThemeContext);
   const buttonClasses = classNames({
     button: true,
     'button--primary': variant === 'primary',
-    'button--primary--dark': variant === 'primary' && dark,
     'button--secondary': variant === 'secondary',
     'button--outline': variant === 'outline',
+    'button--addquestion': variant === 'addquestion',
     'button--danger': variant === 'danger',
     'button--duplicate': variant === 'duplicate',
     'button--sm': size === 'sm',

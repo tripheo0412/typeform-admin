@@ -1,11 +1,15 @@
 // @flow
 import React, { useContext } from 'react';
+import { Button } from '../../components/Button';
 import { UserContext } from '../../contexts/UserContext';
-import { Button } from '../Button';
-import Inputfield from '../InputField';
+import Inputfield from '../../components/InputField';
 import './styles.scss';
 
-const ForgotPasswordPage = ({ emailAddress }: { emailAddress: string }) => {
+export const VerificationPage = ({
+  emailAddress,
+}: {
+  emailAddress: string,
+}) => {
   const { userService } = useContext(UserContext);
   const [value, setValue] = React.useState(emailAddress);
   const [message, setMessage] = React.useState(null);
@@ -14,10 +18,8 @@ const ForgotPasswordPage = ({ emailAddress }: { emailAddress: string }) => {
     setValue(e.target.value);
   const handleSubmit = (e: Event) => {
     e.preventDefault();
-    userService.resetPassword({ email: value });
-    setMessage(
-      `Email sent to ${value}. Please follow the email instruction to reset your password`
-    );
+    userService.sendAccountVerifyEmail({ email: value });
+    setMessage(`Email sent to ${value}`);
     setTimeout(() => {
       setMessage(null);
     }, 5000);
@@ -25,10 +27,14 @@ const ForgotPasswordPage = ({ emailAddress }: { emailAddress: string }) => {
   return (
     <div className="container">
       {message && (
-        <div className="forgotpassword__message--success">{message}</div>
+        <div className="verification__message--success">{message}</div>
       )}
-      <h3>reset your password</h3>
-      <p>Please enter your email to reset your password.</p>
+      <h3>verify your email address</h3>
+      <p>
+        We now need to verify your email address. We've sent an email to your
+        email address to verify your address. Please click the link in that
+        email to continue.
+      </p>
       <form onSubmit={handleSubmit}>
         <Inputfield
           id="email"
@@ -43,11 +49,10 @@ const ForgotPasswordPage = ({ emailAddress }: { emailAddress: string }) => {
           variant="primary"
           label="Resend Email"
           size="sm"
-          onSubmit={handleSubmit}
         />
       </form>
     </div>
   );
 };
 
-export default ForgotPasswordPage;
+export default VerificationPage;

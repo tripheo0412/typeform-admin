@@ -18,7 +18,10 @@
         //width: 42px;
         //height: 42px;
         //margin-right: 10px;
-        @include color($dark-light-1, $light);
+        @include color(
+          var(--color-text-primary),
+          var(--color-background-secondary)
+        );
       }
     }
   }
@@ -33,7 +36,7 @@
   height: 32px;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
-  @include color($grey-light-2, $dark-light);
+  @include color(var(--color-background-secondary), var(--color-text-primary));
   &::after {
     content: "\002B";
     font-size: 25px;

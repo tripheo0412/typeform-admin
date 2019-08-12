@@ -10,10 +10,14 @@ storiesOf('Question', module)
   .addDecorator(jsxDecorator)
   .add('Default', () => (
     <div>
-      <Question />
-      <Question />
+      <Question showQuestionSetting={() => {}} />
+      <Question showQuestionSetting={() => {}} />
     </div>
   ))
-  .add('Required', () => <Question isRequired />)
-  .add('Description', () => <Question hasDescription />)
-  .add('email type', () => <Question type="email" hasDescription />);
+  .add('Required', () => <Question showQuestionSetting={() => {}} isRequired />)
+  .add('Description', () => (
+    <Question showQuestionSetting={() => {}} hasDescription />
+  ))
+  .add('email type', () => (
+    <Question type="email" showQuestionSetting={() => {}} hasDescription />
+  ));

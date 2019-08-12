@@ -4,6 +4,7 @@ import './styles.scss';
 import React from 'react';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { UserContext } from '../../contexts/UserContext';
 import { useOnClickOutside } from '../../custom-hooks/useOnClickOutside';
 import { DropDown } from '../DropDownMenu';
 import TabPanel from '../TabPanel';
@@ -13,21 +14,21 @@ type Option = Array<{
   handleClick: () => any,
 }>;
 
-const options: Option = [
-  { title: 'setting', handleClick: () => alert('setting') },
-  { title: 'Account', handleClick: () => alert('Account') },
-  { title: 'Your profile', handleClick: () => alert('Your profile') },
-  { title: 'Log out', handleClick: () => alert('Log out') },
-];
-
 type AvatarProps = {
   imgUrl?: string,
   initialName: string,
   withMenu?: boolean,
 };
 export const Avatar = ({ imgUrl, initialName, withMenu }: AvatarProps) => {
-  const { toggle } = React.useContext(ThemeContext);
+  const { switchTheme } = React.useContext(ThemeContext);
 
+  const { userService } = React.useContext(UserContext);
+  const options: Option = [
+    { title: 'setting', handleClick: () => alert('setting') },
+    { title: 'Account', handleClick: () => alert('Account') },
+    { title: 'Your profile', handleClick: () => alert('Your profile') },
+    { title: 'Log out', handleClick: () => userService.signout() },
+  ];
   const [isOn, setIsOff] = React.useState(false);
   const handleToggle = (e: { target: HTMLElement }): void => {
     if (
@@ -40,6 +41,7 @@ export const Avatar = ({ imgUrl, initialName, withMenu }: AvatarProps) => {
   const ref = React.useRef();
 
   useOnClickOutside(ref, () => setIsOff(false));
+
   return (
     <>
       <div
@@ -60,10 +62,10 @@ export const Avatar = ({ imgUrl, initialName, withMenu }: AvatarProps) => {
             <DropDown options={options}>
               <TabPanel
                 type="control"
-                title="Theme"
+                title="Dark"
                 label=""
                 options={[]}
-                handleClick={() => toggle()}
+                handleClick={switchTheme}
               />
             </DropDown>
           </div>

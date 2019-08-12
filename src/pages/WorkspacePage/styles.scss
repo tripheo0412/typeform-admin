@@ -30,7 +30,7 @@
     padding: $spacing-01 $spacing-00-75 $spacing-01-50 $spacing-02;
   }
   &__title {
-    color: $primary;
+    color: var(--color-primary);
     text-decoration: none;
     @include font-size-l;
     &:focus {

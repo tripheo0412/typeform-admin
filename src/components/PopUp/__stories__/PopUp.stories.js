@@ -21,6 +21,7 @@ storiesOf('PopUp Modal', module)
       buttonSubmit="save"
       handleSubmit={onSubmitClick('Save')}
       handleCancel={oncancelClick('Cancel')}
+      theme="dark"
     />
   ))
   .add('Delete', () => (
@@ -39,7 +40,13 @@ storiesOf('PopUp Modal', module)
       handleCancel={oncancelClick('Cancel')}
     />
   ))
-  .add('Search', () => <PopUp isSearch />)
+  .add('Search', () => (
+    <PopUp isSearch handleSubmit={onSubmitClick('Create')} />
+  ))
   .add('Search with results', () => (
-    <PopUp isSearch searchResults={['demo', 'demo1']} />
+    <PopUp
+      isSearch
+      searchResults={['demo', 'demo1']}
+      handleSubmit={onSubmitClick('Create')}
+    />
   ));

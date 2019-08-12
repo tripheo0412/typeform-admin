@@ -2,6 +2,10 @@
 @import "../../assets/styles/mixins";
 @import "../../assets/styles/normalize";
 
+.toolbar--theme {
+  display: flex;
+}
+
 .wrapper {
   &__toolbar {
     display: flex;
@@ -39,7 +43,7 @@
   justify-content: space-between;
   padding-left: $spacing-01;
   span {
-    color: $primary;
+    color: var(--color-primary);
     @include font-size-l;
   }
   &__button {
@@ -162,8 +166,32 @@
   }
 }
 
-@include for-phone-only {
+@include for-tablet-portait {
+  .toolbar--theme {
+    display: block;
+  }
   .container--theme {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    button {
+      width: 30%;
+    }
+  }
+}
+
+@include for-phone-only {
+  .toolbar--theme {
+    display: block;
+  }
+  .container--theme {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    button {
+      width: 30%;
+    }
   }
 }

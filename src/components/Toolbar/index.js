@@ -19,7 +19,7 @@ type Props = {
   variant?: Variant,
   children?: React.Node,
   workspaces?: Array<Object>,
-  handleWorkspaceClick?: () => void,
+  handleWorkspaceClick: any => void,
 };
 
 type ThemeProps = {
@@ -31,7 +31,7 @@ type SideToolbarProps = {
   workspaces?: Array<Object>,
   handleSearchClick?: () => void,
   handlePlusClick?: () => void,
-  handleWorkspaceClick?: () => void,
+  handleWorkspaceClick: any => void,
 };
 
 const Theme = ({ children }: ThemeProps) => {
@@ -54,7 +54,7 @@ const Theme = ({ children }: ThemeProps) => {
   }
   return (
     <React.Fragment>
-      <div style={{ display: 'flex' }}>
+      <div className="toolbar--theme">
         <div className="container--theme">
           <button
             type="button"
@@ -181,7 +181,7 @@ export const Toolbar = ({
               <React.Fragment>
                 <Overlay handleClick={() => setShowSearchDialog(false)} />
                 <div className="dialog">
-                  <PopUp title="" isSearch />
+                  <PopUp title="" isSearch handleSubmit={() => {}} />
                 </div>
               </React.Fragment>
             )}
@@ -232,11 +232,11 @@ const SideToolbar = ({
           {workspaces
             ? workspaces.map(workspace => (
                 <li
-                  key={workspace.id}
+                  key={workspace._id}
                   tabIndex="0"
                   // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
                   role="button"
-                  onClick={handleWorkspaceClick}
+                  onClick={() => handleWorkspaceClick(workspace._id)}
                   onKeyPress={() => {}}
                 >
                   <div className="workspaces__item">

@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  @include color($grey-light-1, $dark);
+  @include color(var(--color-background-secondary), var(--color-text-primary));
   max-width: 100%;
   &__header {
     padding: $spacing-01-50;
@@ -81,6 +81,46 @@
   &--desktop {
     @include for-phone {
       display: none;
+    }
+  }
+}
+
+@include for-phone {
+  .panel {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    &__button {
+      height: 100%;
+      padding-bottom: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      &--left {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+@include for-tablet-portait {
+  .panel {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    &__button {
+      height: 100%;
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      &--left {
+        margin-right: 10px;
+      }
     }
   }
 }

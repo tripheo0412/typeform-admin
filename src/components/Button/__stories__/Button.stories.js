@@ -20,11 +20,19 @@ storiesOf('Button', module)
         size="sm"
         label="Save"
         onClick={() => sayHi('Hi')}
+        theme="dark"
       />
       <p>Secondary</p>
       <Button variant="secondary" size="sm" label="View" onClick={() => {}} />
       <p>Outline</p>
       <Button variant="outline" size="sm" label="Sign up" onClick={() => {}} />
+      <p>Add question</p>
+      <Button
+        variant="addquestion"
+        size="md"
+        label="+ Add a question"
+        onClick={() => {}}
+      />
       <p>Duplicate</p>
       <Button
         variant="duplicate"

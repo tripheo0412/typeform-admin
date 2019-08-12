@@ -8,7 +8,7 @@
   font-weight: 300;
   display: flex;
   border-bottom: 1px solid $secondary;
-  background-color: $white;
+  background-color: var(--color-background);
   justify-content: space-between;
   align-items: center;
   height: 80px;
@@ -26,26 +26,28 @@
     &--logo {
       margin: $spacing-01;
       cursor: pointer;
+      color: var(--color-secondary);
     }
 
     &--title {
       padding-right: $spacing-00-25;
       text-decoration: none;
       text-transform: capitalize;
-      color: $grey-light;
+      color: var(--color-secondary);
     }
+
     &--mobile {
       display: none;
     }
   }
   .template--name {
-    color: $primary;
+    color: var(--color-primary);
 
     &::before {
       content: "\002F";
       font-size: 15px;
       padding-right: 2px;
-      color: $grey-light;
+      color: var(--color-secondary);
     }
   }
   &__navlinks {
@@ -62,7 +64,7 @@
       color: $grey-light;
 
       &:hover {
-        color: $primary;
+        color: var(--color-primary);
       }
       &:active {
         color: $danger;
@@ -95,6 +97,9 @@
 @include for-tablet-portrait-down {
   .dot__menu {
     margin-right: $spacing-01;
+    &:hover {
+      background: transparent !important;
+    }
   }
   .navbar__left--desktop {
     display: none;

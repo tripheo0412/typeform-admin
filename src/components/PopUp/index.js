@@ -1,11 +1,8 @@
 // @flow
 import * as React from 'react';
-import classNames from 'classnames';
 
 import InputField from '../InputField';
 import Button from '../Button';
-
-import { ThemeContext } from '../../contexts/ThemeContext';
 
 import './styles.scss';
 
@@ -16,7 +13,7 @@ type Props = {
   isSearch?: boolean,
   searchResults?: string[],
   buttonSubmit?: ButtonSubmit,
-  handleSubmit?: () => void,
+  handleSubmit: any => void,
   handleCancel?: () => void,
 };
 
@@ -38,21 +35,8 @@ export const PopUp = ({
   buttonSubmit,
   handleCancel,
 }: Props) => {
-  const { dark } = React.useContext(ThemeContext);
   const [isClose, setIsClose] = React.useState(true);
   const [state, setState] = React.useState('');
-
-  const modalWrapperStyles = classNames({
-    modal__wrapper: true,
-    'modal__wrapper--dark': dark,
-  });
-
-  const modalWrapperCloseButtonStyles = classNames({
-    'modal__wrapper--close-btn': true,
-    'modal__wrapper--close-btn--dark': dark,
-  });
-  // eslint-disable-next-line no-console
-  console.log(state);
 
   const getVariant = value => {
     switch (value) {
@@ -132,10 +116,10 @@ export const PopUp = ({
       ) : (
         isClose && (
           <div className="modal">
-            <div className={modalWrapperStyles}>
+            <div className="modal__wrapper">
               <button
                 type="submit"
-                className={modalWrapperCloseButtonStyles}
+                className="modal__wrapper--close-btn"
                 onClick={handleClose}
               >
                 &times;
@@ -159,7 +143,8 @@ export const PopUp = ({
                   variant={getVariant(buttonSubmit)}
                   size="sm"
                   label={getLabel(buttonSubmit)}
-                  onClick={handleSubmit}
+                  theme="dark"
+                  onClick={() => handleSubmit(state)}
                 />
                 <Button
                   variant="secondary"

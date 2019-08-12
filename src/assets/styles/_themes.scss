@@ -1,0 +1,39 @@
+@import "./variables";
+@import "./mixins";
+
+$themes: (
+  dark: #000000,
+  white: #ffffff
+);
+
+@mixin theme($name, $color) {
+  .button[data-theme="#{$name}"] {
+    @if $name == "dark" {
+      .button {
+        &--primary {
+          @include color($primary-dark, $white);
+
+          &:hover {
+            background-color: tint($primary-dark, 20%);
+          }
+
+          &:disabled {
+            @include color(tint($primary-dark, 50%), tint($white, 50%));
+          }
+        }
+      }
+    }
+  }
+  .modal[data-theme="#{$name}"] {
+    @if $name == "dark" {
+      .modal {
+        background: black;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+@each $name, $color in $themes {
+  @include theme($name, $color);
+}

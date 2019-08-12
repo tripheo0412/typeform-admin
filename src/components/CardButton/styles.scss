@@ -12,14 +12,14 @@
   }
 
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.25);
   cursor: grab;
 
   &:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
   }
 
-  @include color($grey-light-1, $dark);
+  @include color(var(--color-background-secondary), var(--color-text-primary));
 
   &__items {
     display: flex;
@@ -58,11 +58,10 @@
     flex-direction: column;
   }
   &__footer {
-    background: $white;
-    background-color: $light;
+    background: var(--color-background);
     border-radius: 0px 0px 8px 8px;
     padding: $spacing-00-75 $spacing-00-50;
-    box-shadow: inset 0px 1px 0px 0px $grey-light;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,7 +71,7 @@
       border-radius: 4px;
       padding: $spacing-00-25;
       cursor: pointer;
-      @include color($grey-light-2, $dark-light-1);
+      @include color(var(--color-background), var(--color-text-primary));
 
       &:hover {
         background-color: $grey-light-1;

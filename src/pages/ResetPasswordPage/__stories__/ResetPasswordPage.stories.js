@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { jsxDecorator } from 'storybook-addon-jsx';
+import { ResetPasswordPage } from '..';
 
-import Workspace from '..';
-
-storiesOf('Workspace', module)
+storiesOf('ResetPasswordPage', module)
   .addDecorator(jsxDecorator)
-  .add('default', () => <Workspace />);
+  .add('default', () => <ResetPasswordPage />);

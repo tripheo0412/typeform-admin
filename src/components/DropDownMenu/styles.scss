@@ -7,14 +7,13 @@
   display: inline-block;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
-  @include color($grey-light-1, $grey-light-2);
+  @include color(var(--color-background-secondary), var(--color-text-primary));
   padding: $spacing-00-50 0;
   z-index: 22;
   width: 150px;
 
   &__link {
     display: block;
-    color: $dark-light;
     text-decoration: none;
     text-transform: capitalize;
     padding: $spacing-00-50 $spacing-01-50;
@@ -30,17 +29,17 @@
     }
 
     &:hover {
-      background-color: $secondary;
+      background-color: var(--color-text-secondary);
     }
     span:hover {
-      color: $primary;
+      color: var(--color-background-secondary);
     }
   }
 
   &--children {
     padding: $spacing-00-50 $spacing-01-50;
     cursor: pointer;
-    color: $dark-light;
+    color: var(--color-text-primary);
     text-decoration: none;
     text-transform: none;
   }

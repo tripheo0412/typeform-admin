@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export const customAxios = axios.create({
-  baseURL: 'https://typeform-resource-server.tripheo0412.now.sh',
+  baseURL: 'https://typeform-clone-resource-tripheo0412.now.sh',
 });
 export const authAxios = axios.create({
-  baseURL: 'https://typeform-auth-server.tripheo0412.now.sh',
+  baseURL: 'https://typeform-clone-auth-tripheo0412.now.sh',
 });
 
 export const setAuthToken = token => {

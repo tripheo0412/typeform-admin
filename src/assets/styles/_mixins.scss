@@ -155,12 +155,12 @@
     @content;
   }
 }
-@mixin for-big-phone {
+@mixin for-small-phone {
   @media (min-width: 321px) and (max-width: 450px) {
     @content;
   }
 }
-@mixin for-small-phone {
+@mixin for-small-phone-fixed {
   @media (max-width: 320px) {
     @content;
   }

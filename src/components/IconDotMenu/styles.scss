@@ -18,6 +18,7 @@
   }
   &::after {
     content: "\22EF";
+    color: var(--color-text-primary);
     @include font-size-l;
   }
   &__dropdown--right {

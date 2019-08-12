@@ -1,11 +1,12 @@
 // @flow
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '../Button/index';
 import type { RadioProps, TabProps } from './types.js.flow';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import './styles.scss';
 
-export const RadioControl = ({ handleClick }: RadioProps) => {
-  const [isON, setIsON] = useState(true);
+export const RadioControl = ({ handleClick, isEnabled }: RadioProps) => {
+  const [isON, setIsON] = useState(isEnabled);
   const handleToggle = () => {
     setIsON(!isON);
     handleClick();
@@ -17,7 +18,7 @@ export const RadioControl = ({ handleClick }: RadioProps) => {
       onClick={handleToggle}
       tabIndex={() => {}}
       onKeyPress={handleToggle}
-      className={isON ? 'radio__control' : 'radio__control radio__control-ON'}
+      className={!isON ? 'radio__control' : 'radio__control radio__control-ON'}
     ></div>
   );
 };
@@ -27,26 +28,40 @@ export const TabPanel = ({
   label,
   handleClick,
   options,
-}: TabProps) => (
-  <div className="panel__tab">
-    <span className="tab__label">{title}</span>
-    {type === 'button' && (
-      <Button
-        label={label}
-        variant="secondary"
-        size="sm"
-        onClick={handleClick}
-      />
-    )}
-    {type === 'control' && <RadioControl handleClick={handleClick} />}
-    {type === 'select' && (
-      <select>
-        {options.map(option => (
-          <option value={option.value}>{option.title}</option>
-        ))}
-      </select>
-    )}
-  </div>
-);
+  color,
+}: TabProps) => {
+  const { isDark } = useContext(ThemeContext);
+
+  return (
+    <div className="panel__tab">
+      <span className="tab__label">{title}</span>
+      {type === 'button' && (
+        <Button
+          label={label}
+          variant="secondary"
+          size="sm"
+          onClick={handleClick}
+        />
+      )}
+      {type === 'control' && (
+        <RadioControl handleClick={handleClick} isEnabled={isDark} />
+      )}
+      {type === 'select' && (
+        <select>
+          {options.map(option => (
+            <option value={option.value}>{option.title}</option>
+          ))}
+        </select>
+      )}
+      {type === 'color' && (
+        <input type="color" value={color} onChange={handleClick} />
+      )}
+    </div>
+  );
+};
 
 export default TabPanel;
+
+RadioControl.defaultProps = {
+  isEnabled: false,
+};

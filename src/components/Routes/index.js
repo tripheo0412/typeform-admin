@@ -1,12 +1,11 @@
-// @flow
-
 import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
-import LoginPage from '../LoginPage';
-import VerificationPage from '../VerificationPage';
-import ForgotPasswordPage from '../ForgotPasswordPage';
-import WorkspacePage from '../WorkspacePage';
+import LoginPage from '../../pages/LoginPage';
+import VerificationPage from '../../pages/VerificationPage';
+import ForgotPasswordPage from '../../pages/ForgotPasswordPage';
+import WorkspacePage from '../../pages/WorkspacePage';
+import TemplatePage from '../../pages/TemplatePage';
 
 type Props = {
   component: any,
@@ -38,7 +37,8 @@ export default function Routes() {
         <Route exact path="/" component={LoginPage} />
         <Route exact path="/verification" component={VerificationPage} />
         <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
-        <PrivateRoute exact path="/workspaces" component={WorkspacePage} />
+        <PrivateRoute path="/workspaces" component={WorkspacePage} />
+        <PrivateRoute exact path="/template" component={TemplatePage} />
       </Switch>
     </main>
   );

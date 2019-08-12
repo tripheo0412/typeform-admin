@@ -9,9 +9,8 @@ import { UserProvider } from '../../../contexts/UserContext';
 storiesOf('LoginPage', module)
   .addDecorator(StoryRouter())
   .addDecorator(jsxDecorator)
-
   .add('default', () => (
-    <UserProvider value={{ user: { isAuthenticated: false, user: {} } }}>
+    <UserProvider>
       <LoginPage location={{ state: { from: { pathname: '/test' } } }} />
     </UserProvider>
   ));

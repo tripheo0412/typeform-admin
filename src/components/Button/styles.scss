@@ -1,10 +1,11 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 @import "../../assets/styles/normalize";
+@import "../../assets//styles/themes";
 
 @mixin buttonStyles($background, $color, $border, $borderRadius) {
   font-family: $font-family;
-  font-weight: 300;
+  font-weight: 500;
   @include color($background, $color);
 
   border: $border;
@@ -17,36 +18,36 @@
   &:hover {
     cursor: pointer;
     transition: all 400ms;
-    background-color: tint($background, 20%);
   }
   &:disabled {
     cursor: no-drop;
-    @include color(tint($background, 50%), tint($color, 50%));
+    &:hover {
+      background-color: rgba(192, 192, 192, 0.9);
+    }
   }
 }
 
 .button {
   &--primary {
-    @include buttonStyles($primary, $white, none, 4px);
-    &--dark {
-      @include color($primary-dark, $white);
-      &:hover {
-        background-color: tint($primary-dark, 20%);
-      }
-      &:disabled {
-        @include color(tint($primary-dark, 50%), tint($white, 50%));
-      }
-    }
+    @include buttonStyles(var(--color-primary), $white, none, 4px);
   }
   &--secondary {
     @include buttonStyles($secondary, $dark, none, 4px);
   }
   &--outline {
-    @include buttonStyles($white, $dark, 1px solid $dark, 0);
+    @include buttonStyles(
+      var(--color-background),
+      var(--color-text-primary),
+      1px solid var(--color-text-primary),
+      0
+    );
     &:hover {
-      background-color: $dark;
-      color: $white;
+      background-color: var(--color-text-primary);
+      color: var(--color-background);
     }
+  }
+  &--addquestion {
+    @include buttonStyles($dark-light-2, $white, none, 4px);
   }
   &--danger {
     @include buttonStyles($danger, $white, none, 4px);
@@ -60,12 +61,18 @@
     @include font-size-m;
   }
   &--md {
-    padding: $spacing-00-50 $spacing-03;
+    padding: $spacing-00-50 $spacing-01;
     @include font-size-m;
+    min-width: 120px;
   }
   &--lg {
     padding: $spacing-00-50 $spacing-01;
-    @include buttonStyles($dark, $white, none, 0);
+    @include buttonStyles(
+      var(--color-text-primary),
+      var(--color-background),
+      none,
+      0
+    );
     @include font-size-l;
     min-width: 250px;
   }

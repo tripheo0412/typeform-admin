@@ -5,8 +5,8 @@ import { Redirect, Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { UserContext } from '../../contexts/UserContext';
-import { InputField } from '../InputField';
-import { Button } from '../Button';
+import { InputField } from '../../components/InputField';
+import { Button } from '../../components/Button';
 // import SocialLogin from '../SocialLogin';
 import './styles.scss';
 

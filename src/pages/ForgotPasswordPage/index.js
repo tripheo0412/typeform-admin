@@ -1,15 +1,11 @@
 // @flow
 import React, { useContext } from 'react';
-import { Button } from '../Button';
 import { UserContext } from '../../contexts/UserContext';
-import Inputfield from '../InputField';
+import { Button } from '../../components/Button';
+import Inputfield from '../../components/InputField';
 import './styles.scss';
 
-export const VerificationPage = ({
-  emailAddress,
-}: {
-  emailAddress: string,
-}) => {
+const ForgotPasswordPage = ({ emailAddress }: { emailAddress: string }) => {
   const { userService } = useContext(UserContext);
   const [value, setValue] = React.useState(emailAddress);
   const [message, setMessage] = React.useState(null);
@@ -18,8 +14,10 @@ export const VerificationPage = ({
     setValue(e.target.value);
   const handleSubmit = (e: Event) => {
     e.preventDefault();
-    userService.sendAccountVerifyEmail({ email: value });
-    setMessage(`Email sent to ${value}`);
+    userService.resetPassword({ email: value });
+    setMessage(
+      `Email sent to ${value}. Please follow the email instruction to reset your password`
+    );
     setTimeout(() => {
       setMessage(null);
     }, 5000);
@@ -27,14 +25,10 @@ export const VerificationPage = ({
   return (
     <div className="container">
       {message && (
-        <div className="verification__message--success">{message}</div>
+        <div className="forgotpassword__message--success">{message}</div>
       )}
-      <h3>verify your email address</h3>
-      <p>
-        We now need to verify your email address. We've sent an email to your
-        email address to verify your address. Please click the link in that
-        email to continue.
-      </p>
+      <h3>reset your password</h3>
+      <p>Please enter your email to reset your password.</p>
       <form onSubmit={handleSubmit}>
         <Inputfield
           id="email"
@@ -49,10 +43,11 @@ export const VerificationPage = ({
           variant="primary"
           label="Resend Email"
           size="sm"
+          onSubmit={handleSubmit}
         />
       </form>
     </div>
   );
 };
 
-export default VerificationPage;
+export default ForgotPasswordPage;

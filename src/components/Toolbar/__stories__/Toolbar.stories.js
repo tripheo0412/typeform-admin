@@ -28,6 +28,7 @@ storiesOf('Toolbar', module)
   ))
   .add('theme', () => (
     <Toolbar
+      handleWorkspaceClick={handleClick.workspaceClick}
       handleCreateModal={() => {}}
       handleSearchModal={() => {}}
       variant="theme"

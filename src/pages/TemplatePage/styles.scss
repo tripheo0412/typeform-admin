@@ -1,0 +1,51 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+@mixin phone-styling($marginLeft) {
+  .template {
+    &__questions {
+      width: 100%;
+    }
+    &__button {
+      &--add {
+        display: none;
+        &-mobile {
+          display: block;
+          position: fixed;
+          bottom: 3px;
+          left: $marginLeft;
+        }
+      }
+    }
+  }
+}
+
+.template {
+  &__container {
+    display: flex;
+    width: 100%;
+  }
+  &__button {
+    &--add {
+      display: block;
+      width: 50%;
+      margin: $spacing-02 0 0 $spacing-01;
+      &-mobile {
+        display: none;
+      }
+    }
+  }
+}
+
+@include for-phone {
+  @include phone-styling(25%);
+}
+
+@media (min-width: 321px) and (max-width: 599px) {
+  @include phone-styling(30%);
+}
+
+@include for-tablet-portait {
+  @include phone-styling(35%);
+}

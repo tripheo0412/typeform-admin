@@ -1,6 +1,7 @@
 // @flow
 export type RadioProps = {
-  handleClick: () => () => any,
+  handleClick: () => any,
+  isEnabled: boolean,
 };
 
 export type TabOptions = {
@@ -13,4 +14,6 @@ export type TabProps = {
   label: string,
   handleClick: () => any,
   options: Array<TabOptions>,
+  isDark?: boolean,
+  color?: string,
 };

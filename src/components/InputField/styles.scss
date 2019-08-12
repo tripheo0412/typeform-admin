@@ -12,7 +12,7 @@
   font-weight: 200;
   border: 2px solid $borderColor;
   &:focus {
-    border: 2px solid $dark;
+    border: 2px solid var(--color-text-primary);
     outline: none;
   }
 }
@@ -31,29 +31,32 @@
   }
   span {
     margin-left: $spacing-00-50;
+    color: var(--color-text-primary);
   }
 }
 
 .password {
   font-size: 12px;
-  color: $dark;
   text-decoration: underline;
 }
 
 .inputField {
   &__img {
-    margin-left: $spacing-00-25;
+    mask: url(../../assets/icons/iconSearch.svg) no-repeat center;
+    -webkit-mask: url(../../assets/icons/iconSearch.svg) no-repeat center;
+    background-color: var(--color-text-primary);
+    margin-left: $spacing-01;
     margin-right: $spacing-00-25 / 2;
     width: 30px;
   }
   &--primary {
-    @include inputPrimary($grey-light-1);
+    @include inputPrimary(var(--color-border));
   }
   &--dialog {
-    @include inputPrimary($dark);
+    @include inputPrimary(var(--color-border-secondary));
   }
   &--template {
-    @include inputPrimary($grey-light-2);
+    @include inputPrimary(var(--color-border-secondary));
     margin: 0;
     padding: $spacing-00-50 0px $spacing-00-50 $spacing-00-50;
   }
@@ -63,6 +66,7 @@
     background-color: transparent;
     width: 100%;
     padding: 9px 15px;
+
     &:focus {
       outline: none;
     }
