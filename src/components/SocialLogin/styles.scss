@@ -3,9 +3,13 @@
   display: flex;
   justify-content: center;
 }
-.facebook__container span {
+.social__login span {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
   opacity: 1 !important;
 }
+
 .facebook__login {
   width: 255px;
   height: 40px;

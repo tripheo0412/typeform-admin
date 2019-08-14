@@ -24,16 +24,15 @@ export const SocialLogin = () => {
   return (
     <div className="social__login">
       <div id={GOOGLE_BUTTON_ID}></div>
-      <div className="facebook__container">
-        <FacebookLogin
-          appId="314728102812977"
-          autoLoad
-          fields="name,email,picture"
-          callback={responseFacebook}
-          cssClass="facebook__login"
-          icon="fa-facebook"
-        />
-      </div>
+
+      <FacebookLogin
+        appId="314728102812977"
+        autoLoad
+        fields="name,email,picture"
+        callback={responseFacebook}
+        cssClass="facebook__login"
+        icon="fa-facebook"
+      />
     </div>
   );
 };
