@@ -64,15 +64,8 @@ export const LoginPage = ({ location, history }: Props): Node => {
       ...state,
       [id]: type === 'checkbox' ? checked : value,
     });
-    console.log(process.env.REACT_APP_FACEBOOK_APP_ID);
   };
 
-  const responseGoogle = response => {
-    console.log(response);
-  };
-  const responseFacebook = response => {
-    console.log(response);
-  };
   const handleLogin = (e: Event) => {
     e.preventDefault();
 
