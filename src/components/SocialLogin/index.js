@@ -24,7 +24,7 @@ export const SocialLogin = () => {
   return (
     <div className="social__login">
       <div id={GOOGLE_BUTTON_ID}></div>
-      <div>
+      <div className="facebook__container">
         <FacebookLogin
           appId="314728102812977"
           autoLoad
