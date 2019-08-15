@@ -100,6 +100,34 @@
   align-items: center;
   padding-top: $spacing-01-50;
 }
+.social__login div {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.social__login span {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  opacity: 1 !important;
+}
+
+.facebook__login {
+  width: 255px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: rgba($color: #3b5998, $alpha: 1);
+  color: white;
+  cursor: pointer;
+
+  i {
+    margin-right: 40px;
+  }
+
+  &:hover {
+    background-color: rgba($color: #3b5998, $alpha: 0.5);
+  }
+}
 
 @include for-tablet-portrait-down {
   .login__logo {

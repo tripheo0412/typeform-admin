@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-
 import Routes from './components/Routes';
 import { UserProvider } from './contexts/UserContext';
 import { DataProvider } from './contexts/DataContext';
