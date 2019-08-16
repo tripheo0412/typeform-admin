@@ -22,7 +22,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "storybook-addon-jsx": "^7.1.2",
-    "storybook-react-router": "^1.0.5"
+    "storybook-react-router": "^1.0.5",
+    "universal-cookie": "^4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

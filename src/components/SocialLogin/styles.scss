@@ -26,3 +26,19 @@
     background-color: rgba($color: #3b5998, $alpha: 0.5);
   }
 }
+.google__login {
+  width: 255px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: rgba($color: #e33f2c, $alpha: 1);
+  color: white;
+  cursor: pointer;
+
+  i {
+    margin-right: 54px;
+  }
+
+  &:hover {
+    background-color: rgba($color: #e33f2c, $alpha: 0.5);
+  }
+}

@@ -7,7 +7,9 @@ const userURL = '/users';
 export const useUserService = (state: Object, dispatch: Function) => {
   const get = () => {
     customAxios
-      .get(userURL)
+      .get(userURL, {
+        withCredentials: true,
+      })
       .then(res => {
         dispatch({
           type: Types.SET_USER,
@@ -28,9 +30,11 @@ export const useUserService = (state: Object, dispatch: Function) => {
       })
       .catch(err => console.log(err));
   };
-  const signinGoogle = () => {
+  const signinGoogle = data => {
     authAxios
-      .get(`${userURL}/oauth/google`)
+      .get(`${userURL}/oauth/google`, data, {
+        withCredentials: true,
+      })
       .then(res => {
         localStorage.setItem('token', res.data.token);
         setAuthToken(res.data.token);
@@ -38,9 +42,11 @@ export const useUserService = (state: Object, dispatch: Function) => {
       })
       .catch(err => console.log(err));
   };
-  const signinFacebook = () => {
+  const signinFacebook = data => {
     authAxios
-      .get(`${userURL}/oauth/facebook`)
+      .get(`${userURL}/oauth/facebook`, data, {
+        withCredentials: true,
+      })
       .then(res => {
         localStorage.setItem('token', res.data.token);
         setAuthToken(res.data.token);

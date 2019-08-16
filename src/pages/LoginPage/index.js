@@ -1,6 +1,7 @@
 // @flow
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import type { Node } from 'react';
+import Cookies from 'universal-cookie';
 import { Redirect, Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import { InputField } from '../../components/InputField';
@@ -8,6 +9,7 @@ import { Button } from '../../components/Button';
 import SocialLogin from '../../components/SocialLogin';
 import './styles.scss';
 
+const cookies = new Cookies();
 type InputFields = {
   firstName: string,
   lastName: string,
@@ -24,7 +26,9 @@ type Props = {
 
 export const LoginPage = ({ location, history }: Props): Node => {
   const { user, userService } = useContext(UserContext);
-
+  useEffect(() => {
+    localStorage.setItem('token', cookies.get('access_token'));
+  }, []);
   const [showLogin, setShowLogin] = useState(true);
   const [state, setState] = useState<InputFields>({
     firstName: '',
@@ -34,7 +38,6 @@ export const LoginPage = ({ location, history }: Props): Node => {
     agree: false,
     subscribe: false,
   });
-
   const handleSwitchForm = () => {
     setState({
       firstName: '',

@@ -2,39 +2,31 @@
 import * as React from 'react';
 import './styles.scss';
 
-import FacebookLogin from 'react-facebook-login';
-
-const GOOGLE_BUTTON_ID =
-  '96649280732-gnu1j75n4srhjurp5kqerpckvib9e8ap.apps.googleusercontent.com';
-
-export const SocialLogin = () => {
-  React.useEffect(() => {
-    window.gapi.signin2.render(GOOGLE_BUTTON_ID, {
-      width: 255,
-      height: 40,
-      onsuccess: onSuccess,
-    });
-  });
-  const responseFacebook = res => {
-    console.log(res);
-  };
-  const onSuccess = res => {
-    console.log(res);
-  };
-  return (
-    <div className="social__login">
-      <div id={GOOGLE_BUTTON_ID}></div>
-      <FacebookLogin
-        appId="314728102812977"
-        autoLoad
-        reauthenticate
-        fields="name,email,picture"
-        callback={responseFacebook}
-        cssClass="facebook__login"
-        icon="fa-facebook"
+export const SocialLogin = () => (
+  <div className="social__login">
+    <span>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
       />
-    </div>
-  );
-};
+      <a href="https://typeform-clone-auth-tripheo0412.now.sh/users/oauth/facebook">
+        <button type="button" className="facebook__login metro">
+          <i className="fa fa-facebook"></i>Login with Facebook
+        </button>
+      </a>
+    </span>
+    <span>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+      />
+      <a href="https://typeform-clone-auth-tripheo0412.now.sh/users/oauth/google">
+        <button type="button" className="google__login metro">
+          <i className="fa fa-google"></i>Login with Google
+        </button>
+      </a>
+    </span>
+  </div>
+);
 
 export default SocialLogin;
