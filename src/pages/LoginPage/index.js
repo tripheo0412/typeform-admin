@@ -27,7 +27,12 @@ type Props = {
 export const LoginPage = ({ location, history }: Props): Node => {
   const { user, userService } = useContext(UserContext);
   useEffect(() => {
-    localStorage.setItem('token', cookies.get('access_token'));
+    const fetchData = async () => {
+      await localStorage.setItem('token', cookies.get('access_token'));
+      await userService.get();
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [showLogin, setShowLogin] = useState(true);
   const [state, setState] = useState<InputFields>({
