@@ -8,6 +8,7 @@ import React, {
   useEffect,
 } from 'react';
 import { Route } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import Navbar from '../../components/Navbar';
 import Toolbar from '../../components/Toolbar';
 import Avatar from '../../components/Avatar';
@@ -16,8 +17,10 @@ import IconDotMenu from '../../components/IconDotMenu';
 import DropDownMenu from '../../components/DropDownMenu';
 import { AddNewCardButton } from '../../components/CardButton';
 import { DataContext } from '../../contexts/DataContext.js';
+
 import './styles.scss';
 
+const cookies = new Cookies();
 type workspacePageProps = {
   history: Object,
 };
@@ -110,6 +113,7 @@ const Workspace = ({ match }: workspaceProps) => {
 
 const WorkspacesPage = ({ history }: workspacePageProps) => {
   const { data } = useContext(DataContext);
+  console.log(cookies.get('refresh_token'));
   // useEffect(() => {
   //   workspaceService.getAll();
   // }, []);
