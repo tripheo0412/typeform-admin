@@ -28,6 +28,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
   const { user, userService } = useContext(UserContext);
   useEffect(() => {
     const fetchData = async () => {
+      console.log(cookies.get('refresh_token'));
       await localStorage.setItem('token', cookies.get('access_token'));
       await userService.get();
     };
