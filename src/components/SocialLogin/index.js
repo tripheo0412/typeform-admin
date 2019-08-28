@@ -4,28 +4,26 @@ import './styles.scss';
 
 export const SocialLogin = () => (
   <div className="social__login">
-    <span>
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-      />
-      <a href="https://typeform-clone-auth-tripheo0412.now.sh/users/oauth/facebook">
-        <button type="button" className="facebook__login metro">
-          <i className="fa fa-facebook"></i>Login with Facebook
-        </button>
-      </a>
-    </span>
-    <span>
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-      />
-      <a href="https://typeform-clone-auth-tripheo0412.now.sh/users/oauth/google">
-        <button type="button" className="google__login metro">
-          <i className="fa fa-google"></i>Login with Google
-        </button>
-      </a>
-    </span>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <a href="https://typeform-clone-auth-tripheo0412.now.sh/users/oauth/facebook">
+      <button type="button" className="facebook__login metro">
+        <i className="fa fa-facebook"></i>
+        <span>Login with Facebook</span>
+      </button>
+    </a>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <a href="https://typeform-clone-auth-tripheo0412.now.sh/users/oauth/google">
+      <button type="button" className="google__login metro">
+        <i className="fa fa-google"></i>
+        <span>Login with Google</span>
+      </button>
+    </a>
   </div>
 );
 

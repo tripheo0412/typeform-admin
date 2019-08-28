@@ -1,13 +1,13 @@
-@import "../../assets/styles/variables";
-@import "../../assets/styles/mixins";
-@import "../../assets/styles/normalize";
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/normalize';
 
 .navbar {
   @include font-size-m;
   font-family: $font-family;
   font-weight: 300;
   display: flex;
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid var(--color-border);
   background-color: var(--color-background);
   justify-content: space-between;
   align-items: center;
@@ -42,13 +42,6 @@
   }
   .template--name {
     color: var(--color-primary);
-
-    &::before {
-      content: "\002F";
-      font-size: 15px;
-      padding-right: 2px;
-      color: var(--color-secondary);
-    }
   }
   &__navlinks {
     display: flex;
@@ -58,19 +51,25 @@
     li {
       margin: $spacing-01;
     }
-    a {
-      text-decoration: none;
-      text-transform: capitalize;
-      color: $grey-light;
 
-      &:hover {
-        color: var(--color-primary);
-      }
-      &:active {
-        color: $danger;
-      }
+    .a-active {
+      color: var(--color-primary);
     }
   }
+
+  a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: $grey-light;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+    &:active {
+      color: $danger;
+    }
+  }
+
   &__center {
     display: flex;
     flex: 1;
@@ -114,7 +113,7 @@
       margin-left: $spacing-00-25;
       border: none;
       &:after {
-        content: "\003C";
+        content: '\003C';
         font-size: 20px;
         color: $grey-light;
       }

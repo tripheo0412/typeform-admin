@@ -1,0 +1,36 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.fileupload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 30%;
+  outline: none;
+  cursor: pointer;
+
+  &--icon {
+    width: 150px;
+    height: 150px;
+    -webkit-mask: url("../../assets/icons/iconUpload.svg") no-repeat center;
+    mask: url("../../assets/icons/iconUpload.svg") no-repeat center;
+  }
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  &__text {
+    margin-right: $spacing-00-25;
+    font-weight: 700;
+    display: inline;
+    line-height: 20px;
+    @include font-size-m;
+  }
+}

@@ -2,7 +2,7 @@
 @import "../../assets/styles/mixins";
 @import "../../assets/styles/normalize";
 
-@mixin question-phone-style($marginLeft) {
+@mixin question-phone-style($top, $left) {
   .question {
     &:hover {
       .button__icon--add {
@@ -19,18 +19,8 @@
       width: 100%;
     }
     &--required {
-      padding-right: 0;
-    }
-    &__type {
-      position: absolute;
-      top: 65%;
-      left: $marginLeft;
-      &--mobile--isRequired {
-        left: 15%;
-      }
-      &--mobile--hasDescription {
-        top: 70%;
-      }
+      top: $top;
+      left: $left;
     }
   }
   .button {
@@ -46,7 +36,6 @@
 .question__container {
   display: flex;
   width: 100%;
-  min-width: 400px;
 }
 
 .question {
@@ -127,6 +116,12 @@
     &--YesNo {
       background-color: #bf395b;
     }
+    &--dropDown {
+      background-color: #58457a;
+    }
+    &--opinion {
+      background-color: #74a4bf;
+    }
     &--icon {
       width: 20px;
       height: 20px;
@@ -171,9 +166,46 @@
       }
     }
   }
+  &__choices {
+    list-style-type: none;
+    &--picture {
+      display: flex;
+    }
+  }
+  &__choice {
+    &::before {
+      content: "-";
+      margin-right: 6px;
+    }
+    cursor: pointer;
+    display: flex;
+    margin: $spacing-00-25 $spacing-00-50 $spacing-00-50 $spacing-00-50;
+  }
+
+  &__input {
+    outline: 0;
+    border: 0;
+    background: transparent;
+  }
 
   &__number {
     color: $light;
+  }
+
+  &__picture {
+    cursor: default;
+    display: inline-block;
+    border-radius: 4px;
+    height: 25px;
+    display: flex;
+    border: 1px solid rgb(198, 182, 220);
+    background-color: rgb(236, 231, 243);
+    text-align: center;
+    &--filler {
+      width: 25px;
+      height: 100%;
+      background-color: #a086c4;
+    }
   }
 
   &__buttons {
@@ -192,11 +224,38 @@
         height: 20px;
       }
     }
+    &--close {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      &::after {
+        content: "\00D7";
+        font-size: 20px;
+        color: #a086c4;
+      }
+    }
+    &--add {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      &::after {
+        content: "+";
+        font-size: 20px;
+        color: #a086c4;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
   }
+
   &--required {
+    position: absolute;
+    z-index: 1;
+    top: 7%;
+    left: 1%;
     color: #d95767;
     display: block;
-    padding-right: $spacing-01;
   }
   .button {
     &__icon--add {
@@ -213,13 +272,16 @@
 }
 
 @include for-small-phone-fixed {
-  @include question-phone-style(11%);
+  @include question-phone-style(4%, 1%);
 }
 @include for-small-phone {
-  @include question-phone-style(13%);
+  @include question-phone-style(3%, 1%);
 }
 @include for-phone {
   .question {
+    &--required {
+      top: 4%;
+    }
     &:hover {
       .button__icon--add {
         display: none;
@@ -235,6 +297,9 @@
 
 @media (min-width: 321px) and (max-width: 599px) {
   .question {
+    &--required {
+      top: 3%;
+    }
     &:hover {
       .button__icon--add {
         display: none;
@@ -250,6 +315,9 @@
 
 @include for-tablet-portait {
   .question {
+    &--required {
+      top: 1.75%;
+    }
     &:hover {
       .button__icon--add {
         display: none;

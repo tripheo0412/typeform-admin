@@ -1,0 +1,51 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/normalize';
+@import '../../assets/styles/themes';
+
+.button-client {
+  display: flex;
+  align-items: center;
+  //margin-top: $spacing-02;
+  //margin-bottom: $spacing-02;
+  outline: none;
+  height: 48px;
+
+  &__content {
+    button {
+      white-space: nowrap;
+      font-size: 22px;
+      font-weight: 500;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+      min-height: 40px;
+      outline: none;
+      padding: $spacing-00-50 $spacing-01;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    &__button {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+  }
+  img {
+    margin-left: 15px;
+  }
+
+  &__helper {
+    display: inline-block;
+    margin-left: $spacing-00-75;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: 300;
+
+    strong {
+      margin-left: $spacing-00-25;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -9,44 +9,49 @@ import './styles.scss';
 
 export type AddNewCardButtonProps = {
   isTemplate?: boolean,
-  handleClick: any => void,
+  handleClick?: Function,
 };
 
 export const AddNewCardButton = ({
   isTemplate = false,
   handleClick,
 }: AddNewCardButtonProps) => (
-  <div
-    className="cardbutton"
-    onClick={() => handleClick}
-    onKeyPress={() => {}}
-    role="button"
-    tabIndex={0}
-  >
-    <div className="cardbutton__items">
-      {isTemplate ? 'New Template' : 'New Theme'}
+  <div>
+    <div
+      className="cardbutton"
+      onClick={handleClick}
+      onKeyPress={() => {}}
+      role="button"
+      tabIndex={0}
+    >
+      <div className="cardbutton__items">
+        {isTemplate ? 'New Template' : 'New Theme'}
+      </div>
     </div>
   </div>
 );
 
 export type CardButtonProps = {
   history?: Object,
-  link: string,
   isTemplate?: boolean,
   template?: Object,
-  templateService?: Object,
   theme?: Object,
+  themeShortcuts?: Array<{
+    title: string,
+    handleClick: any => any,
+  }>,
   handleClick: any => void,
+  dataService?: Object,
 };
 
 export const CardButton = ({
   history = {},
-  link,
   isTemplate = false,
   template = {},
-  templateService = {},
   theme = {},
   handleClick,
+  dataService = {},
+  themeShortcuts = [],
 }: CardButtonProps) => {
   const {
     backgroundColor,
@@ -54,7 +59,7 @@ export const CardButton = ({
     questionColor,
     answerColor,
     buttonColor,
-  } = theme;
+  } = isTemplate ? template.theme : theme;
   const [openRenamePopup, setOpenRenamePopup] = useState(false);
 
   const backgroundStyle = {
@@ -62,16 +67,11 @@ export const CardButton = ({
     backgroundImage,
   };
 
-  const handleViewingResponses = () => {
-    history.push(`${link}/results`);
+  const handleViewingForms = () => {
+    history.push(`/templates/${template._id}/forms`, { template });
   };
 
-  let responses = 0;
-  if (isTemplate) {
-    template.forms.forEach(form => {
-      responses += form.responses.length;
-    });
-  }
+  const { responses } = template;
 
   let responsesNumber = <span>0 responses</span>;
   if (typeof responses === 'number') {
@@ -84,7 +84,7 @@ export const CardButton = ({
           <button
             type="button"
             className="cardbutton__footer__button"
-            onClick={handleViewingResponses}
+            onClick={handleViewingForms}
           >
             1 response
           </button>
@@ -95,7 +95,7 @@ export const CardButton = ({
           <button
             type="button"
             className="cardbutton__footer__button"
-            onClick={handleViewingResponses}
+            onClick={handleViewingForms}
           >
             {`${responses} responses`}
           </button>
@@ -110,18 +110,12 @@ export const CardButton = ({
     {
       title: 'Edit',
       handleClick: () => {
-        history.push(`${link}/edit`);
+        history.push(`/templates/${template._id}/edit`, { template });
       },
     },
     {
-      title: 'Preview',
-      handleClick: () => {
-        history.push(`${link}/preview`);
-      },
-    },
-    {
-      title: 'Result',
-      handleClick: handleViewingResponses,
+      title: 'Forms',
+      handleClick: handleViewingForms,
     },
     {
       title: 'Rename',
@@ -129,23 +123,17 @@ export const CardButton = ({
     },
     {
       title: 'Duplicate',
-      handleClick: () => {
-        const newTemplate = template;
-        delete newTemplate.id;
-        templateService.create(newTemplate);
-      },
+      handleClick: () => dataService.createTemplate(template),
     },
     {
       title: 'Delete',
-      handleClick: () => {
-        templateService.remove(template.id);
-      },
+      handleClick: () => dataService.removeTemplate(template),
     },
   ];
 
   const updateTemplateName = name => {
     const newTemplate = { ...template, name };
-    templateService.update(newTemplate);
+    dataService.updateTemplate(newTemplate);
   };
 
   return (
@@ -156,7 +144,9 @@ export const CardButton = ({
           role="button"
           tabIndex="0"
           onKeyPress={() => {}}
-          onClick={handleClick}
+          onClick={
+            isTemplate ? () => handleClick(template) : () => handleClick(theme)
+          }
         >
           {isTemplate && template ? (
             template.name
@@ -179,24 +169,18 @@ export const CardButton = ({
 
         <div className="cardbutton__footer">
           {isTemplate ? responsesNumber : theme.name}
-
           <IconDotMenu>
-            <DropDown
-              options={
-                isTemplate
-                  ? shortcuts
-                  : [{ title: 'Customize', handleClick: () => null }]
-              }
-            />
+            <DropDown options={isTemplate ? shortcuts : themeShortcuts} />
           </IconDotMenu>
         </div>
       </div>
 
       {openRenamePopup ? (
         <PopUp
-          title="Rename this template"
-          buttonSubmit="edit"
+          title="Rename This Template"
+          buttonSubmit="save"
           handleSubmit={updateTemplateName}
+          handleCancel={() => setOpenRenamePopup(false)}
         />
       ) : null}
     </div>

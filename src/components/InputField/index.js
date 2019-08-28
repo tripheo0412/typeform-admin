@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 // @flow
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import './styles.scss';
 
@@ -13,6 +13,7 @@ type Props = {
   placeholder?: string,
   variant?: string,
   handleChange: any => void,
+  error?: string,
 };
 
 export const InputField = ({
@@ -23,6 +24,7 @@ export const InputField = ({
   placeholder,
   variant,
   handleChange,
+  error = '',
   isRequired,
 }: Props) => {
   const inputStyles = classNames({
@@ -60,6 +62,7 @@ export const InputField = ({
           required={isRequired}
         />
       )}
+      {error && <div style={{ color: 'var(--color-danger)' }}>{error}</div>}
     </label>
   );
 };

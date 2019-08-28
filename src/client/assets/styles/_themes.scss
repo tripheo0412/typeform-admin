@@ -1,0 +1,249 @@
+// CSS  color variables
+:root {
+  --main-color: '#FFFFFF';
+  --btnlight-color: '#FFFFFF';
+  --lighten-color: '#FFFFFF';
+  --lightenest-color: '#FFFFFF';
+  --dark-color: '#FFFFFF';
+  --question-color: '#3D3D3D';
+  --button-color: '#3D3D3D';
+  --background-color: '#3D3D3D';
+}
+
+.button-client {
+  button {
+    background: var(--button-color);
+    color: var(--background-color);
+    &:hover {
+      background: var(--light-color);
+      color: var(--button-color);
+    }
+  }
+  &__helper {
+    color: var(--main-color);
+  }
+}
+
+.question__wrapper {
+  background-color: var(--background-color);
+}
+.questionfield {
+  color: var(--button-color);
+  &__label {
+    color: var(--question-color);
+  }
+  &__counter--number {
+    color: var(--question-color);
+  }
+  &__counter--icon {
+    background: var(--question-color);
+  }
+}
+
+.choicetab {
+  @include color(var(--lightenest-color), var(--main-color));
+  box-shadow: var(--lighten-color) 0px 0px 0px 1px inset;
+
+  &:hover {
+    background: var(--lighten-color);
+  }
+
+  &__keyhelper {
+    @include color($white, var(--main-color));
+    box-shadow: var(--lighten-color) 0px 0px 0px 1px inset;
+    &--checked {
+      @include color(var(--main-color), $white);
+    }
+  }
+  &__title {
+    color: var(--dark-color);
+  }
+  &__check--icon {
+    background: var(--main-color);
+  }
+  &--checked {
+    box-shadow: var(--light-color) 0px 0px 0px 2px inset;
+  }
+}
+
+.choicebox {
+  color: var(--main-color);
+}
+
+.dropdown {
+  &__icon--close {
+    background-color: var(--main-color);
+  }
+  &__icon--check {
+    background-color: var(--main-color);
+  }
+  &__option {
+    @include color(var(--lightenest-color), var(--main-color));
+    box-shadow: var(--lighten-color) 0 0 0 1px inset;
+
+    &:hover {
+      background: var(--lighten-color);
+    }
+  }
+}
+
+.fieldset {
+  input,
+  textarea {
+    color: var(--main-color);
+    &::placeholder {
+      color: var(--lighten-color);
+    }
+    &:not(:focus) {
+      box-shadow: 0 1px var(--lightenest-color);
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    box-shadow: 0 0 0px 100px var(--background-color) inset;
+    -webkit-box-shadow: 0 0 0px 100px var(--background-color) inset;
+    -webkit-text-fill-color: var(--main-color) !important;
+  }
+}
+
+.fileupload {
+  border: 1px dashed var(--main-color);
+  @include color(var(--lightenest-color), var(--main-color));
+
+  &:hover {
+    background: var(--lighten-color);
+    opacity: 0.7;
+  }
+  &--icon {
+    background-color: var(--main-color);
+  }
+}
+
+.opinions {
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+
+  &__scale {
+    @include color(var(--lightenest-color), var(--main-color));
+    box-shadow: var(--lighten-color) -1px 0;
+
+    &:hover {
+      background: var(--lighten-color);
+    }
+    &:focus {
+      background: var(--light-color);
+    }
+    &--mark {
+      @include color(var(--main-color), $white);
+    }
+  }
+}
+
+.picturechoice {
+  background-color: var(--lightenest-color);
+  box-shadow: var(--lighten-color) 0 0 0 1px inset;
+
+  &:hover {
+    background: var(--lighten-color);
+  }
+  &__items {
+    color: var(--main-color);
+  }
+
+  &__corner {
+    &::before {
+      border-color: var(--main-color) var(--main-color) transparent transparent;
+    }
+  }
+  &__keyhelper {
+    border-color: var(--main-color);
+    @include color($white, var(--main-color));
+
+    &--check {
+      @include color(var(--main-color), $white);
+    }
+  }
+}
+
+.rating {
+  &__icon {
+    background-color: var(--lighten-color);
+
+    &:focus {
+      background-color: var(--dark-color);
+    }
+  }
+  &__text {
+    color: var(--main-color);
+  }
+  &__icon--mark {
+    background-color: var(--dark-color);
+  }
+}
+
+.wellcome {
+  &__picture {
+    background-color: var(--lightenest-color);
+    &--icon {
+      background-color: var(--lighten-color);
+    }
+  }
+  &__text {
+    color: var(--dark-color);
+  }
+}
+
+.telephone {
+  &__flag {
+    box-shadow: 0px 1px var(--lighten-color);
+    &--toggle {
+      background: var(--main-color);
+    }
+  }
+  &__dropdown {
+    background: var(--background-color);
+    border: 1px solid var(--lighten-color);
+  }
+  .dropdown__tab {
+    box-shadow: inset 0 0 0 1px var(--light-color);
+    @include color(var(--lightenest-color), var(--main-color));
+
+    &:hover {
+      background-color: var(--lighten-color);
+    }
+  }
+}
+
+.progressbar {
+  &__inner {
+    &--track {
+      background-color: var(--lightenest-color);
+      &--filler {
+        background-color: var(--dark-color);
+      }
+    }
+    &--handle {
+      &--start {
+        background-color: var(--main-color);
+        border-color: var(--lighten-color);
+        &--img {
+          background-color: $white;
+        }
+      }
+      &--position {
+        background-color: var(--main-color);
+        border-color: var(--dark-color);
+      }
+      &--end {
+        background-color: $white;
+        border-color: var(--dark-color);
+        &--img {
+          background-color: var(--dark-color);
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.3.1",
+    "@material-ui/styles": "^4.3.0",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
     "@storybook/addon-viewport": "^5.1.9",
@@ -14,16 +16,19 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
     "flow-bin": "^0.101.1",
+    "lodash": "^4.17.15",
+    "material-ui-chip-input": "^2.0.0-beta.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-contenteditable": "^3.3.1",
     "react-dom": "^16.8.6",
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.0.5",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "semantic-ui-react": "^0.87.3",
     "storybook-addon-jsx": "^7.1.2",
-    "storybook-react-router": "^1.0.5",
-    "universal-cookie": "^4.0.2"
+    "storybook-react-router": "^1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

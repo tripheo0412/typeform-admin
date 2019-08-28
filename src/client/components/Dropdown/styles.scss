@@ -1,0 +1,70 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.dropdown {
+  position: relative;
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    outline: none;
+    &--close {
+      width: 24px;
+      height: 24px;
+      -webkit-mask: url("../../assets/icons/iconClose.svg") no-repeat center;
+      mask: url("../../assets/icons/iconClose.svg") no-repeat center;
+    }
+    &--check {
+      width: 24px;
+      height: 24px;
+      -webkit-mask: url("../../assets/icons/iconDropdown.svg") no-repeat center;
+      mask: url("../../assets/icons/iconDropdown.svg") no-repeat center;
+    }
+  }
+  &__select {
+    z-index: 30;
+    width: 100%;
+    max-height: 264px;
+    overflow: auto;
+    margin-top: $spacing-00-50;
+    padding-bottom: $spacing-01;
+  }
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    min-width: 75px;
+    position: relative;
+    outline: none;
+    line-height: 24px;
+    border-radius: 4px;
+    margin-bottom: $spacing-00-25;
+    max-height: 264px;
+    padding: $spacing-00-50;
+    cursor: pointer;
+    opacity: 1;
+
+    &--text {
+      padding: $spacing-00-25 $spacing-00-75;
+    }
+  }
+}
+
+.inputfield {
+  display: block;
+  width: 100%;
+  font-size: 24px;
+  line-height: 32px;
+  padding-bottom: $spacing-00-50;
+  background-color: transparent;
+  border-style: none;
+  outline: none;
+  word-break: break-word;
+  overflow: visible;
+  height: 100%;
+}

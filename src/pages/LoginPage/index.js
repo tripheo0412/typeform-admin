@@ -1,15 +1,16 @@
 // @flow
 import React, { useState, useContext, useEffect } from 'react';
+
 import type { Node } from 'react';
-import Cookies from 'universal-cookie';
 import { Redirect, Link } from 'react-router-dom';
+import { setAuthToken } from '../../services/customAxios';
 import { UserContext } from '../../contexts/UserContext';
 import { InputField } from '../../components/InputField';
 import { Button } from '../../components/Button';
 import SocialLogin from '../../components/SocialLogin';
+import { Types } from '../../reducers/actionTypes';
 import './styles.scss';
 
-const cookies = new Cookies();
 type InputFields = {
   firstName: string,
   lastName: string,
@@ -25,14 +26,14 @@ type Props = {
 };
 
 export const LoginPage = ({ location, history }: Props): Node => {
-  const { user, userService } = useContext(UserContext);
+  const { user, userService, dispatchUser } = useContext(UserContext);
   useEffect(() => {
-    const fetchData = async () => {
-      await localStorage.setItem('token', cookies.get('access_token'));
-      await userService.get();
-      console.log(cookies.get('access_token'));
-    };
-    fetchData();
+    if (location.pathname === '/redirect') {
+      const token = location.pathname.substring(10);
+      localStorage.setItem('token', token);
+      setAuthToken(token);
+      userService.get();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [showLogin, setShowLogin] = useState(true);
@@ -44,6 +45,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
     agree: false,
     subscribe: false,
   });
+
   const handleSwitchForm = () => {
     setState({
       firstName: '',
@@ -55,6 +57,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
     });
 
     setShowLogin(!showLogin);
+    dispatchUser({ type: Types.REMOVE_ERRORS, payload: {} });
   };
 
   const { from } = location.state || {
@@ -66,6 +69,8 @@ export const LoginPage = ({ location, history }: Props): Node => {
   }
 
   const { firstName, lastName, email, password, agree } = state;
+
+  const { errors } = user;
 
   const handleChange = (e: { target: HTMLInputElement }) => {
     const { id, type, checked, value } = e.target;
@@ -124,6 +129,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
                   value={firstName}
                   handleChange={handleChange}
                   isRequired
+                  error={errors && errors.fname}
                 />
 
                 <InputField
@@ -136,6 +142,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
                   value={lastName}
                   handleChange={handleChange}
                   isRequired
+                  error={errors && errors.lname}
                 />
               </>
             )}
@@ -149,6 +156,7 @@ export const LoginPage = ({ location, history }: Props): Node => {
               value={email}
               handleChange={handleChange}
               isRequired
+              error={errors && errors.email}
             />
             <InputField
               type="password"
@@ -160,37 +168,23 @@ export const LoginPage = ({ location, history }: Props): Node => {
               isSignin={showLogin}
               handleChange={handleChange}
               isRequired
+              error={errors && errors.password}
             />
             {showLogin && (
-              <>
-                <Link className="password" to="/forgotpassword">
-                  I forgot my password
-                </Link>
-              </>
+              <Link className="password" to="/forgotpassword">
+                I forgot my password
+              </Link>
             )}
             {!showLogin && (
-              <>
-                <div className="form__checkbox">
-                  <InputField
-                    type="checkbox"
-                    name="agree"
-                    id="agree"
-                    labelText=" I agree to Integrify's Terms and Services and privacy policy"
-                    handleChange={handleChange}
-                  />
-                </div>
-
-                <div className="form__checkbox">
-                  <InputField
-                    type="checkbox"
-                    name="subscribe"
-                    id="subscribe"
-                    labelText="I'd like to get usefull tips, inspiration, and offers via
-                    email(unsubscribe at any time)"
-                    handleChange={handleChange}
-                  />
-                </div>
-              </>
+              <div className="form__checkbox">
+                <InputField
+                  type="checkbox"
+                  name="agree"
+                  id="agree"
+                  labelText=" I agree to Integrify's Terms and Services and privacy policy"
+                  handleChange={handleChange}
+                />
+              </div>
             )}
             <div className="login__button">
               <Button
@@ -206,6 +200,17 @@ export const LoginPage = ({ location, history }: Props): Node => {
             <div>
               <div className="login__split"></div>
               <SocialLogin />
+            </div>
+          )}
+          {user.errors && (
+            <div
+              style={{
+                color: 'var(--color-danger)',
+                textAlign: 'center',
+                marginTop: '30px',
+              }}
+            >
+              {user.errors.error}
             </div>
           )}
         </div>

@@ -1,0 +1,52 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.choicetab {
+  position: relative;
+  margin-top: $spacing-00-50;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+  display: flex;
+  align-items: center;
+
+  &__keyhelper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: $spacing-00-50;
+    text-transform: uppercase;
+    border-radius: 4px;
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 75px;
+    min-height: 40px;
+    padding: $spacing-00-25 $spacing-00-75 $spacing-00-25 0;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 28px;
+  }
+  &__check {
+    padding-right: $spacing-00-75;
+    width: 36px;
+    opacity: 1;
+
+    &--icon {
+      width: 24px;
+      height: 24px;
+      -webkit-mask: url("../../assets/icons/iconCheck.svg") no-repeat center;
+      mask: url("../../assets/icons/iconCheck.svg") no-repeat center;
+    }
+  }
+}

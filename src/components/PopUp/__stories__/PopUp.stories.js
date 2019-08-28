@@ -35,7 +35,7 @@ storiesOf('PopUp Modal', module)
   .add('Create Workspace', () => (
     <PopUp
       title="Create a new Workspace"
-      buttonSubmit="create workspace"
+      buttonSubmit="create"
       handleSubmit={onSubmitClick('Create')}
       handleCancel={oncancelClick('Cancel')}
     />

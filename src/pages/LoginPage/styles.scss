@@ -1,6 +1,6 @@
-@import "../../assets/styles/variables";
-@import "../../assets/styles/mixins";
-@import "../../assets/styles/normalize";
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/normalize';
 
 .login__page {
   display: flex;
@@ -51,13 +51,13 @@
     align-items: center;
     padding: $spacing-03 0;
     &:before {
-      content: "OR";
+      content: 'OR';
       position: absolute;
       padding: 0px $spacing-00-25;
       @include color($light, $grey-light);
     }
     &:after {
-      content: "";
+      content: '';
       width: 100%;
       border-top: 1px solid rgb(232, 232, 232);
     }
@@ -79,9 +79,13 @@
   .form__inputs {
     width: 356px;
     margin-top: 0;
+
+    .input__container {
+      margin: $spacing-00-50 0;
+    }
   }
 
-  input[variant="primary"] {
+  input[variant='primary'] {
     margin-bottom: $spacing-01;
   }
 }
@@ -99,34 +103,6 @@
   justify-content: center;
   align-items: center;
   padding-top: $spacing-01-50;
-}
-.social__login div {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-.social__login span {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  opacity: 1 !important;
-}
-
-.facebook__login {
-  width: 255px;
-  height: 40px;
-  border-radius: 4px;
-  background-color: rgba($color: #3b5998, $alpha: 1);
-  color: white;
-  cursor: pointer;
-
-  i {
-    margin-right: 40px;
-  }
-
-  &:hover {
-    background-color: rgba($color: #3b5998, $alpha: 0.5);
-  }
 }
 
 @include for-tablet-portrait-down {

@@ -1,0 +1,16 @@
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@-webkit-keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.blink {
+  animation: blink 0.25s 2;
+  -webkit-animation: blink 0.25s 2;
+}

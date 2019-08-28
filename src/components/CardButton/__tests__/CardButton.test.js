@@ -4,13 +4,13 @@ import { CardButton, AddNewCardButton } from '..';
 
 describe('Card Button Test', () => {
   it('renders Theme without crashing', () => {
-    shallow(<CardButton link="/" />);
+    shallow(<CardButton />);
   });
   it('renders Template without crashing', () => {
-    shallow(<AddNewCardButton link="/" />);
+    shallow(<AddNewCardButton />);
   });
   it('should render correctly default template', () => {
-    const component = shallow(<CardButton link="/" />);
+    const component = shallow(<CardButton />);
     expect(component).toMatchSnapshot();
   });
   it('should render card text correctly with responses', () => {
@@ -18,12 +18,19 @@ describe('Card Button Test', () => {
       <CardButton
         isTemplate
         history={{ push: () => {} }}
-        templateService={{ remove: () => {} }}
-        link="/"
+        dataService={{ remove: () => {} }}
         template={{
           id: 1,
           name: 'My Template',
           forms: [{ responses: [[]] }],
+          theme: {
+            font: 'Open Sans',
+            questionColor: '#3D3D3D',
+            answerColor: '#4FB0AE',
+            backgroundColor: '#FFFFFF',
+            buttonColor: '#4FB0AE',
+            name: 'New theme',
+          },
         }}
       />
     );
@@ -34,9 +41,20 @@ describe('Card Button Test', () => {
       <CardButton
         isTemplate
         history={{ push: () => {} }}
-        templateService={{ remove: () => {} }}
-        link="/"
-        template={{ id: 2, name: 'My Template', forms: [{ responses: [] }] }}
+        dataService={{ remove: () => {} }}
+        template={{
+          id: 2,
+          name: 'My Template',
+          forms: [{ responses: [] }],
+          theme: {
+            font: 'Open Sans',
+            questionColor: '#3D3D3D',
+            answerColor: '#4FB0AE',
+            backgroundColor: '#FFFFFF',
+            buttonColor: '#4FB0AE',
+            name: 'New theme',
+          },
+        }}
       />
     );
     expect(component).toMatchSnapshot();
@@ -46,9 +64,20 @@ describe('Card Button Test', () => {
       <CardButton
         isTemplate
         history={{ push: () => {} }}
-        templateService={{ remove: () => {} }}
-        link="/"
-        template={{ id: 2, name: 'My Template', forms: [{ responses: [] }] }}
+        dataService={{ remove: () => {} }}
+        template={{
+          id: 2,
+          name: 'My Template',
+          forms: [{ responses: [] }],
+          theme: {
+            font: 'Open Sans',
+            questionColor: '#3D3D3D',
+            answerColor: '#4FB0AE',
+            backgroundColor: '#FFFFFF',
+            buttonColor: '#4FB0AE',
+            name: 'New theme',
+          },
+        }}
       />
     );
     expect(component).toMatchSnapshot();

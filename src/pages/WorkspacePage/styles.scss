@@ -1,14 +1,17 @@
-@import "../../assets/styles/variables";
-@import "../../assets/styles/mixins";
-@import "../../assets/styles/normalize";
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/normalize';
 
 .workspace {
   font-family: $font-family;
+
   &__container {
     display: flex;
+    background: var(--color-background);
   }
   &__button {
     &--title {
+      background: inherit;
       margin-top: $spacing-01 / 2;
       overflow: hidden;
       white-space: nowrap;
@@ -44,6 +47,14 @@
   }
   &__user {
     padding: 0 $spacing-00-25 0 0;
+  }
+  &__templates {
+    display: flex;
+    flex-wrap: wrap;
+    .cardbutton {
+      margin-right: 40px;
+      margin-bottom: 40px;
+    }
   }
 }
 

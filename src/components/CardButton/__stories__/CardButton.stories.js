@@ -15,7 +15,7 @@ storiesOf('CardButton', module)
     <CardButton
       isTemplate
       history={{ push: () => {} }}
-      templateService={{ remove: () => {} }}
+      dataService={{ remove: () => {} }}
       link="/"
       template={{
         id: 1,
@@ -30,7 +30,7 @@ storiesOf('CardButton', module)
     <CardButton
       isTemplate
       history={{ push: () => {} }}
-      templateService={{ remove: () => {} }}
+      dataService={{ remove: () => {} }}
       link="/"
       template={{ id: 2, name: 'My Template', forms: [{ responses: [] }] }}
       handleClick={() => alert('Clicked')}

@@ -15,13 +15,6 @@ import './styles.scss';
 
 type Variant = 'main' | 'theme';
 
-type Props = {
-  variant?: Variant,
-  children?: React.Node,
-  workspaces?: Array<Object>,
-  handleWorkspaceClick: any => void,
-};
-
 type ThemeProps = {
   children?: React.Node,
 };
@@ -84,11 +77,22 @@ const Theme = ({ children }: ThemeProps) => {
   );
 };
 
+type Props = {
+  variant?: Variant,
+  children?: React.Node,
+  workspaces?: Array<Object>,
+  handleWorkspaceClick: any => void,
+  dataService?: Object,
+  user?: Object,
+};
+
 export const Toolbar = ({
   variant,
   children,
   workspaces,
   handleWorkspaceClick,
+  dataService = { createWorkspace: () => {} },
+  user = {},
 }: Props) => {
   const [showSideToolbar, setShowSideToolbar] = React.useState(false);
   const [showCreateDialog, setShowCreateDialog] = React.useState(false);
@@ -101,6 +105,9 @@ export const Toolbar = ({
   };
   const handleShowSideToolbar = () => {
     setShowSideToolbar(!showSideToolbar);
+  };
+  const handleCreateNewWorkspace = (workspaceName: string) => {
+    dataService.createWorkspace(user, { name: workspaceName });
   };
   const wrapperStyles = classNames({
     wrapper__toolbar: true,
@@ -169,9 +176,9 @@ export const Toolbar = ({
                 <Overlay handleClick={() => setShowCreateDialog(false)} />
                 <div className="dialog">
                   <PopUp
-                    title="Create a new Workspace"
-                    buttonSubmit="create workspace"
-                    handleSubmit={() => {}}
+                    title="Create a New Workspace"
+                    buttonSubmit="create"
+                    handleSubmit={handleCreateNewWorkspace}
                     handleCancel={() => setShowCreateDialog(false)}
                   />
                 </div>
@@ -192,6 +199,12 @@ export const Toolbar = ({
       )}
     </React.Fragment>
   );
+};
+
+Toolbar.defaultProps = {
+  variant: 'main',
+  dataService: () => {},
+  user: {},
 };
 
 const SideToolbar = ({
@@ -236,12 +249,12 @@ const SideToolbar = ({
                   tabIndex="0"
                   // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
                   role="button"
-                  onClick={() => handleWorkspaceClick(workspace._id)}
+                  onClick={() => handleWorkspaceClick(workspace)}
                   onKeyPress={() => {}}
                 >
                   <div className="workspaces__item">
                     <span>{workspace.name}</span>
-                    <span>{workspace.templates}</span>
+                    <span>{workspace.templates.length}</span>
                   </div>
                 </li>
               ))
@@ -279,10 +292,6 @@ export const Testroute = () => (
     </div>
   </Router>
 );
-
-Toolbar.defaultProps = {
-  variant: 'main',
-};
 
 SideToolbar.defaultProps = {
   isShow: false,

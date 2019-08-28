@@ -1,0 +1,49 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+@import "../../assets/styles/animations";
+
+.welcome {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-01-50;
+
+  .welcome__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 270px;
+      height: 200px;
+    }
+  }
+
+  &__picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 270px;
+    height: 200px;
+    max-width: 100%;
+
+    &--icon {
+      width: 150px;
+      height: 150px;
+      -webkit-mask: url("../../assets/icons/iconPicture.svg") no-repeat center;
+      mask: url("../../assets/icons/iconPicture.svg") no-repeat center;
+    }
+  }
+  &__text {
+    max-width: 100%;
+    line-height: 32px;
+    @include font-size-l;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+  }
+}

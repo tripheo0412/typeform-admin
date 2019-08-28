@@ -4,6 +4,7 @@
 
 .toolbar--theme {
   display: flex;
+  height: 100%;
 }
 
 .wrapper {
@@ -17,11 +18,14 @@
 }
 
 .container {
-  height: 100vh;
+  height: calc(100vh - 80px);
+  height: -o-calc(100vh - 80px); /* opera */
+  height: -webkit-calc(100vh - 80px); /* google, safari */
+  height: -moz-calc(100vh - 80px); /* firefox */
   font-family: $font-family;
   @include font-size-s;
   min-width: 250px;
-  border-right: 2px solid $grey-light-1;
+  border-right: 1px solid var(--color-border);
   padding: $spacing-01 0 $spacing-01 0;
   &--top {
     &--show {
@@ -132,8 +136,8 @@
 }
 
 .container--theme {
-  height: 100vh;
   width: 5%;
+  min-width: 40px;
   display: flex;
   flex-direction: column;
   border-right: 2px solid $grey-light-1;
@@ -173,7 +177,6 @@
   .container--theme {
     display: flex;
     flex-direction: row;
-    height: 100%;
     width: 100%;
     button {
       width: 30%;
@@ -188,7 +191,6 @@
   .container--theme {
     display: flex;
     flex-direction: row;
-    height: 100%;
     width: 100%;
     button {
       width: 30%;

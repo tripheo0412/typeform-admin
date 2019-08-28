@@ -20,7 +20,7 @@ type AvatarProps = {
   withMenu?: boolean,
 };
 export const Avatar = ({ imgUrl, initialName, withMenu }: AvatarProps) => {
-  const { switchTheme } = React.useContext(ThemeContext);
+  const { isDark, switchTheme } = React.useContext(ThemeContext);
 
   const { userService } = React.useContext(UserContext);
   const options: Option = [
@@ -66,6 +66,7 @@ export const Avatar = ({ imgUrl, initialName, withMenu }: AvatarProps) => {
                 label=""
                 options={[]}
                 handleClick={switchTheme}
+                isEnabled={isDark}
               />
             </DropDown>
           </div>

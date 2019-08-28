@@ -20,9 +20,17 @@ type Props = {
   label: string,
   disabled?: boolean,
   onClick?: any => void,
+  isActive?: boolean,
 };
 
-export const Button = ({ variant, label, disabled, onClick, size }: Props) => {
+export const Button = ({
+  variant,
+  label,
+  disabled,
+  onClick,
+  size,
+  isActive,
+}: Props) => {
   const buttonClasses = classNames({
     button: true,
     'button--primary': variant === 'primary',
@@ -34,6 +42,7 @@ export const Button = ({ variant, label, disabled, onClick, size }: Props) => {
     'button--sm': size === 'sm',
     'button--md': size === 'md',
     'button--lg': size === 'lg',
+    'button--active': isActive,
   });
 
   return (
@@ -54,4 +63,5 @@ Button.defaultProps = {
   variant: '',
   disabled: false,
   onClick: () => {},
+  isActive: false,
 };

@@ -1,0 +1,55 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+
+.share {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-top: $spacing-04;
+  padding: 0 $spacing-01-50;
+
+  &__label {
+    font-weight: 300;
+    @include font-size-l;
+  }
+
+  &__items {
+    display: flex;
+
+    margin-top: 24px;
+    max-width: 512px;
+    button {
+      padding: $spacing-00-50 $spacing-01;
+      border-radius: 0 $spacing-00-25 $spacing-00-25 0;
+      line-height: 24px;
+      cursor: pointer;
+      outline: none;
+      @include color($green, $white);
+
+      &:hover {
+        background-color: rgba($green, $alpha: 0.9);
+      }
+    }
+
+    input {
+      outline: none;
+      line-height: 24px;
+      border: none;
+      margin: 1px;
+      width: 100%;
+      padding: $spacing-00-50 $spacing-01;
+    }
+  }
+  &__input {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background: $white;
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
+    border-radius: 4px 0 0 4px;
+    border-color: $grey-light;
+    outline: none;
+  }
+}

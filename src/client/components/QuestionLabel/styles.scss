@@ -1,0 +1,62 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.questionfield {
+  padding-top: 0;
+  padding-bottom: $spacing-01;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  &__section {
+    width: 100%;
+    opacity: 1;
+    z-index: 10;
+    position: relative;
+    animation: none;
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: 840px;
+    margin: 0 auto;
+    padding-left: $spacing-04;
+    padding-right: $spacing-04;
+    padding-top: $spacing-01-50;
+    padding-bottom: $spacing-01-50;
+  }
+
+  &__counter {
+    position: absolute;
+
+    left: 20px;
+    padding-right: $spacing-00-50;
+    display: flex;
+
+    &--number {
+      max-width: 100%;
+      line-height: 24px;
+      @include font-size-m;
+    }
+
+    &--icon {
+      width: 24px;
+      height: 24px;
+      -webkit-mask: url("../../assets/icons/iconPath.svg") no-repeat center;
+      mask: url("../../assets/icons/iconPath.svg") no-repeat center;
+    }
+  }
+  &__label {
+    @include font-size-l;
+    font-weight: 300;
+    line-height: 32px;
+  }
+  &__children {
+    margin-top: $spacing-02;
+    margin-bottom: $spacing-01;
+    line-height: 24px;
+    height: 100%;
+  }
+}

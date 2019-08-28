@@ -1,12 +1,12 @@
 // @flow
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import InputField from '../InputField';
 import Button from '../Button';
 
 import './styles.scss';
 
-type ButtonSubmit = 'save' | 'delete' | 'edit' | 'ok' | 'create workspace';
+type ButtonSubmit = 'save' | 'delete' | 'edit' | 'ok' | 'create';
 
 type Props = {
   title?: string,
@@ -17,30 +17,20 @@ type Props = {
   handleCancel?: () => void,
 };
 
-const modalInputProps = {
-  id: '',
-  labelText: '',
-  type: 'text',
-  placeholder: '',
-  value: '',
-  variant: 'template',
-  isSignin: false,
-};
-
 export const PopUp = ({
   title,
   isSearch,
   searchResults,
   handleSubmit,
   buttonSubmit,
-  handleCancel,
+  handleCancel = () => {},
 }: Props) => {
-  const [isClose, setIsClose] = React.useState(true);
-  const [state, setState] = React.useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [isEmptyInput, setIsEmptyInput] = useState(false);
 
   const getVariant = value => {
     switch (value) {
-      case 'ok' || 'edit' || 'save' || 'create workspace':
+      case 'ok' || 'edit' || 'save' || 'create':
         return 'primary';
 
       case 'delete':
@@ -68,21 +58,37 @@ export const PopUp = ({
       case 'delete':
         return 'delete';
 
-      case 'create workspace':
-        return 'create workspace';
+      case 'create':
+        return 'create';
 
       default:
         return '';
     }
   };
 
-  const handleClose = () => setIsClose(!isClose);
+  const modalInputProps = {
+    id: '',
+    labelText: '',
+    type: 'text',
+    placeholder: '',
+    value: inputValue,
+    variant: 'template',
+    isSignin: false,
+  };
 
   const handleChange = (e: { target: HTMLInputElement }) => {
     const { value } = e.target;
-    setState(value);
+    setInputValue(value);
   };
 
+  const handleSubmitInputValue = () => {
+    if (inputValue) {
+      handleSubmit(inputValue);
+      handleCancel();
+    } else {
+      setIsEmptyInput(true);
+    }
+  };
   return (
     <>
       {isSearch ? (
@@ -114,48 +120,51 @@ export const PopUp = ({
           </div>
         </div>
       ) : (
-        isClose && (
-          <div className="modal">
-            <div className="modal__wrapper">
-              <button
-                type="submit"
-                className="modal__wrapper--close-btn"
-                onClick={handleClose}
-              >
-                &times;
-              </button>
-              <div className="modal__wrapper--header">
-                <span>
-                  <b>{title}</b>
-                </span>
-              </div>
-              <br />
-              <div className="modal__wrapper--content">
-                <InputField
-                  {...modalInputProps}
-                  variant="template"
-                  handleChange={handleChange}
-                />
-              </div>
-              <br />
-              <div className="modal__wrapper--footer--buttons">
-                <Button
-                  variant={getVariant(buttonSubmit)}
-                  size="sm"
-                  label={getLabel(buttonSubmit)}
-                  theme="dark"
-                  onClick={() => handleSubmit(state)}
-                />
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  label="Cancel"
-                  onClick={handleCancel}
-                />
-              </div>
+        <div className="modal">
+          <div className="modal__wrapper">
+            <button
+              type="submit"
+              className="modal__wrapper--close-btn"
+              onClick={handleCancel}
+            >
+              &times;
+            </button>
+            <div className="modal__wrapper--header">
+              <span>
+                <b>{title}</b>
+              </span>
+            </div>
+            <br />
+            <div className="modal__wrapper--content">
+              <InputField
+                {...modalInputProps}
+                variant="template"
+                handleChange={handleChange}
+              />
+            </div>
+            {isEmptyInput && (
+              <p style={{ color: 'var(--color-danger)' }}>
+                This cannot be empty
+              </p>
+            )}
+            <br />
+            <div className="modal__wrapper--footer--buttons">
+              <Button
+                variant={getVariant(buttonSubmit)}
+                size="sm"
+                label={getLabel(buttonSubmit)}
+                theme="dark"
+                onClick={handleSubmitInputValue}
+              />
+              <Button
+                variant="secondary"
+                size="sm"
+                label="Cancel"
+                onClick={handleCancel}
+              />
             </div>
           </div>
-        )
+        </div>
       )}
     </>
   );

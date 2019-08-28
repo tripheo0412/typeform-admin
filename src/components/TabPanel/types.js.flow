@@ -9,11 +9,13 @@ export type TabOptions = {
   value: string,
 };
 export type TabProps = {
+  id?: string,
   type: string,
   title: string,
   label: string,
-  handleClick: () => any,
+  handleClick: any => void,
   options: Array<TabOptions>,
-  isDark?: boolean,
+  isEnabled?: boolean,
   color?: string,
+  initialValue?: string,
 };

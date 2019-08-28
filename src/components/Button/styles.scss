@@ -1,7 +1,7 @@
-@import "../../assets/styles/variables";
-@import "../../assets/styles/mixins";
-@import "../../assets/styles/normalize";
-@import "../../assets//styles/themes";
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/normalize';
+@import '../../assets//styles/themes';
 
 @mixin buttonStyles($background, $color, $border, $borderRadius) {
   font-family: $font-family;
@@ -75,5 +75,9 @@
     );
     @include font-size-l;
     min-width: 250px;
+  }
+  &--active {
+    background: var(--color-text-primary);
+    color: var(--color-background);
   }
 }

@@ -1,0 +1,9 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.yesorno {
+  display: inline-flex;
+  flex-direction: column;
+}

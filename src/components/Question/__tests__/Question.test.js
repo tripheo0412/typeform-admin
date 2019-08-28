@@ -22,9 +22,6 @@ describe('Question', () => {
     wrapper = shallow(<Question />);
     expect(wrapper).toMatchSnapshot();
   });
-  it('Question type should be short text by default', () => {
-    expect(wrapper.props().type).toBe('short text');
-  });
   it('Question should render correctly prop type', () => {
     wrapper = mount(<Question type="email" />);
     expect(wrapper.props().type).toBe('email');

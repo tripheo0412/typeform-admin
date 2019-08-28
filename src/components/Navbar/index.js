@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // @flow
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import IconDotMenu from '../IconDotMenu';
 import Button from '../Button';
 import Avatar from '../Avatar';
@@ -8,76 +10,94 @@ import { DropDown } from '../DropDownMenu';
 import './styles.scss';
 
 type Props = {
-  isWorkspase?: boolean,
-  templateName?: string,
+  match: Object,
+  location: Object,
+  history: Object,
+  user: Object,
   handleSave?: () => void,
   handleView?: () => void,
-  handleBack?: () => void,
 };
 
-const links = [
-  {
-    title: 'edit',
-    handleClick: () => alert('link'),
-    linkUrl: '#',
-  },
-  {
-    title: 'share',
-    handleClick: () => alert('link'),
-    linkUrl: '#',
-  },
-  {
-    title: 'results',
-    handleClick: () => alert('link'),
-    linkUrl: '#',
-  },
-];
 export const Navbar = ({
-  templateName,
+  match,
+  location,
+  history,
+  user,
   handleSave,
   handleView,
-  handleBack,
-  isWorkspase,
 }: Props) => {
+  const [isWorkspace, setIsWorkspace] = useState(match.path === '/workspaces');
+  const [workspaceItem, setWorkspaceItem] = useState({ name: '', _id: '' });
+  const [templateItem, setTemplateItem] = useState({ name: '', _id: '' });
+
+  useEffect(() => {
+    setIsWorkspace(match.path === '/workspaces');
+    if (location.state) {
+      setWorkspaceItem(location.state.workspace || { name: '', _id: '' });
+      setTemplateItem(location.state.template);
+    }
+  }, [match.path]);
+
+  const links = [
+    {
+      title: 'edit',
+      handleClick: () => {
+        history.push('edit');
+      },
+    },
+    {
+      title: 'forms',
+      handleClick: () => {
+        history.push('forms');
+      },
+    },
+  ];
+
   const navLinksTarget = links.map(link => (
-    // TODO: change the a link to be <Link to="l.linkUrl"/>
     <li key={link.title}>
-      <a href={link.linkUrl} target="">
+      <Link
+        to={link.title}
+        className={match.params.link === link.title ? 'a-active' : ''}
+      >
         {link.title}
-      </a>
+      </Link>
     </li>
   ));
 
   const workspace = () => (
     <div className="navbar navbar__workspace">
       <div className="navbar__left--logo">
-        <placeholder>LOGO</placeholder>
+        <Link to="">LOGO</Link>
       </div>
 
-      <Avatar
-        withMenu
-        initialName="vj"
-        imgUrl="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-      />
+      <Avatar withMenu initialName={user.fname.charAt(0)} />
     </div>
   );
 
   return (
-    (isWorkspase && workspace()) || (
+    (isWorkspace && workspace()) || (
       <div className="navbar">
         <div className="navbar__left">
           <div className="navbar__left--desktop">
             <div className="navbar__left--logo">
-              <placeholder>LOGO</placeholder>
+              <Link to="">LOGO</Link>
             </div>
-            <a className="navbar__left--title" href="/" target="">
-              my workspace
-            </a>
-            <span className="template--name">{templateName}</span>
+            <Link
+              className="navbar__left--title"
+              to={`/workspaces/${workspaceItem._id}`}
+            >
+              {workspaceItem.name && `${workspaceItem.name}/ `}
+            </Link>
+            <span className="template--name">{templateItem.name}</span>
           </div>
           <div className="navbar__left--mobile">
-            <button onClick={handleBack} type="submit"></button>
-            {templateName}
+            <button
+              onClick={() => {
+                history.goBack();
+              }}
+              type="submit"
+            ></button>
+            {templateItem.name}
           </div>
         </div>
         <ul className="navbar__navlinks">{navLinksTarget}</ul>
@@ -94,11 +114,7 @@ export const Navbar = ({
             label="View"
             onClick={handleView}
           />
-          <Avatar
-            withMenu
-            initialName="vj"
-            imgUrl="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-          />
+          <Avatar withMenu initialName={user.fname.charAt(0)} />
         </div>
         <div className="dot__menu">
           <IconDotMenu direct="left">

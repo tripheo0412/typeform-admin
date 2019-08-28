@@ -1,16 +1,22 @@
-.social__login div {
-  margin-bottom: 20px;
+.social__login {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-}
-.social__login span {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  opacity: 1 !important;
+  align-items: center;
+  span {
+    display: flex;
+    justify-content: center;
+    opacity: 1 !important;
+  }
+  a {
+    margin-bottom: 20px;
+    text-decoration: none;
+  }
 }
 
 .facebook__login {
+  display: flex;
+  justify-content: center;
   width: 255px;
   height: 40px;
   border-radius: 4px;
@@ -27,6 +33,9 @@
   }
 }
 .google__login {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 255px;
   height: 40px;
   border-radius: 4px;
@@ -35,7 +44,8 @@
   cursor: pointer;
 
   i {
-    margin-right: 54px;
+    margin-left: 20px;
+    margin-right: 35px;
   }
 
   &:hover {

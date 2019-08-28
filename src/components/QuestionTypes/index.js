@@ -7,7 +7,7 @@ import './styles.scss';
 
 type Props = {
   isOpen?: boolean,
-  handleType: () => any,
+  handleType: (...any) => void,
 };
 
 type Question = {
@@ -15,19 +15,19 @@ type Question = {
 };
 
 export const questions: Question = Object.freeze({
-  iconCheck: 'multiple choice',
-  iconPhone: 'phone number',
-  iconShortText: 'short text',
-  iconLongText: 'long text',
-  iconQuote: 'statement',
-  iconPhoto: 'picture choice',
-  iconYesnoQuestion: 'yes/no',
+  iconCheck: 'choicebox',
+  iconPhone: 'tel',
+  iconShortText: 'shottext',
+  iconLongText: 'longtext',
+  iconPhoto: 'picture',
+  iconNavDown: 'dropdown',
+  iconOpinion: 'opinion',
+  iconYesnoQuestion: 'yesorno',
   iconEmail: 'email',
   iconLink: 'website',
-  iconRating: 'rating',
+  iconRating: 'rates',
   iconDate: 'date',
-  iconNumber: 'number',
-  iconFile: 'file upload',
+  iconFile: 'upload',
 });
 
 export const QuestionTypes = ({ handleType, isOpen }: Props) => {
@@ -49,11 +49,12 @@ export const QuestionTypes = ({ handleType, isOpen }: Props) => {
           onClick={handleType}
         >
           <img
+            title={questions[type]}
             className={`question__Types__icon question__Types__icon--${type}`}
             src={require(`../../assets/icons/${type}.svg`)}
             alt="icon"
           />
-          <span>{questions[type]}</span>
+          <span title={questions[type]}>{questions[type]}</span>
         </div>
       ))}
     </div>

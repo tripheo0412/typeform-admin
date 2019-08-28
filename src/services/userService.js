@@ -2,14 +2,13 @@
 // @flow
 import { Types } from '../reducers/actionTypes';
 import { authAxios, customAxios, setAuthToken } from './customAxios';
+import { formatErrors } from '../utils/formatErrors';
 
 const userURL = '/users';
 export const useUserService = (state: Object, dispatch: Function) => {
   const get = () => {
     customAxios
-      .get(userURL, {
-        withCredentials: true,
-      })
+      .get(userURL)
       .then(res => {
         dispatch({
           type: Types.SET_USER,
@@ -28,13 +27,17 @@ export const useUserService = (state: Object, dispatch: Function) => {
         setAuthToken(res.data.token);
         get();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        dispatch({
+          type: Types.SET_ERRORS,
+          payload: { errors: formatErrors(err.response.data) },
+        });
+      });
   };
-  const signinGoogle = data => {
+
+  const signinGoogle = () => {
     authAxios
-      .get(`${userURL}/oauth/google`, data, {
-        withCredentials: true,
-      })
+      .get(`${userURL}/oauth/google`)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         setAuthToken(res.data.token);
@@ -42,11 +45,9 @@ export const useUserService = (state: Object, dispatch: Function) => {
       })
       .catch(err => console.log(err));
   };
-  const signinFacebook = data => {
+  const signinFacebook = () => {
     authAxios
-      .get(`${userURL}/oauth/facebook`, data, {
-        withCredentials: true,
-      })
+      .get(`${userURL}/oauth/facebook`)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         setAuthToken(res.data.token);
@@ -86,7 +87,12 @@ export const useUserService = (state: Object, dispatch: Function) => {
         history.push('/verification');
         console.log(res);
       })
-      .catch(err => console.log(err));
+      .catch(err =>
+        dispatch({
+          type: Types.SET_ERRORS,
+          payload: { errors: formatErrors(err.response.data) },
+        })
+      );
   };
   const resetPassword = (email: Object) => {
     authAxios
@@ -120,18 +126,13 @@ export const useUserService = (state: Object, dispatch: Function) => {
   };
 
   const signout = () => {
-    authAxios
-      .get(`${userURL}/signout`, {
-        withCredentials: true,
-      })
-      .then(res => {
-        localStorage.removeItem('token');
-        dispatch({
-          type: Types.REMOVE_USER,
-          payload: { user: {} },
-        });
-      })
-      .catch(err => console.log(err));
+    authAxios.get(`${userURL}/signout`, {
+      withCredentials: true,
+    });
+
+    localStorage.removeItem('token');
+    setAuthToken();
+    window.location.href = '/';
   };
   return {
     signup,

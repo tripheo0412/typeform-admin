@@ -18,12 +18,20 @@ const onBackIconClick = value => () => {
   alert(value);
 };
 
+const tempObject = { name: 'Temp' };
+
 storiesOf('Navbar', module)
   .addDecorator(jsxDecorator)
   .add('workspace', () => (
     <UserProvider>
       <ThemeProvider>
-        <Navbar isWorkspase />
+        <Navbar
+          isWorkspace
+          history={tempObject}
+          match={tempObject}
+          location={tempObject}
+          user={tempObject}
+        />
       </ThemeProvider>
     </UserProvider>
   ))
@@ -32,6 +40,10 @@ storiesOf('Navbar', module)
       <ThemeProvider>
         <Navbar
           templateName="My template"
+          history={tempObject}
+          match={tempObject}
+          location={tempObject}
+          user={tempObject}
           handleSave={onSaveClick('Save')}
           handleView={onViewClick('View')}
           handleBack={onBackIconClick('go back')}

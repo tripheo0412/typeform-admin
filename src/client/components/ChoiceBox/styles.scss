@@ -1,0 +1,11 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.choicebox {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  outline: none;
+}

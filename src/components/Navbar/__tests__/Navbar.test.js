@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 
 import Navbar from '..';
 
+const tempObject = { name: 'Temp' };
+
 describe('navbar component', () => {
   let component;
   it('debug', () => {
@@ -32,7 +34,15 @@ describe('navbar component', () => {
     ];
 
     component = shallow(
-      <Navbar logo={logo} avatar={avatar} settings={settings} />
+      <Navbar
+        logo={logo}
+        avatar={avatar}
+        settings={settings}
+        history={tempObject}
+        match={{ params: { link: '' } }}
+        location={tempObject}
+        user={{ fname: 'N' }}
+      />
     );
     expect(component).toMatchSnapshot();
   });

@@ -1,0 +1,35 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/normalize";
+@import "../../assets/styles/themes";
+
+.rating {
+  display: flex;
+
+  &__icon {
+    width: 34px;
+    height: 34px;
+    -webkit-mask: url("../../assets/icons/iconRating.svg") no-repeat center;
+    mask: url("../../assets/icons/iconRating.svg") no-repeat center;
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    flex: 1 0 0%;
+    max-width: 64px;
+    max-height: 64px;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+  }
+  &__text {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: $spacing-00-75;
+  }
+}
